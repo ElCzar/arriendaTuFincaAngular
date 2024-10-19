@@ -1,0 +1,25 @@
+<div class="property-container">
+    <div class="property-header">
+      <h1>{{propertyName}}</h1>
+      <p class="location">{{location}}</p>
+    </div>
+  
+    <div class="property-images">
+      <img src="{{imageMainUrl}}" alt="{{propertyName}}" class="main-image">
+      <div class="thumbnail-images">
+        <img *ngFor="let image of propertyImages" [src]="image" alt="Imagen de {{propertyName}}">
+      </div>
+    </div>
+  
+    <div class="property-info">
+      <h2>Detalles de la Propiedad</h2>
+      <p>{{description}}</p>
+      <p><strong>Precio por noche:</strong> {{pricePerNight | currency}}</p>
+      <p><strong>Habitaciones:</strong> {{bedrooms}}</p>
+      <p><strong>Baños:</strong> {{bathrooms}}</p>
+      <p><strong>Capacidad:</strong> {{capacity}} personas</p>
+  
+      <button class="book-now-btn">Reservar Ahora</button>
+    </div>
+  </div>
+  

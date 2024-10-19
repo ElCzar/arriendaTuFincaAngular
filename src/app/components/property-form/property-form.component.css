@@ -1,0 +1,78 @@
+/* Tipografías */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@400;700&display=swap');
+
+/* Estilos generales */
+body {
+  background-color: #ffffff; /* Fondo blanco */
+  font-family: 'Noto Serif HK', serif;
+  color: #000000; /* Texto negro */
+}
+
+/* Contenedor del formulario */
+.property-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8; /* Fondo neutro */
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el encabezado */
+.property-form-container h1 {
+  text-align: center;
+  color: #9F6D65; /* Color primario */
+  font-size: 2.5rem; /* Tamaño de fuente de encabezados según el escalado */
+  margin-bottom: 20px;
+  font-family: 'Noto Serif HK', serif;
+}
+
+/* Estilos para las etiquetas */
+.form-group label {
+  font-weight: bold;
+  color: #9F6D65; /* Color primario */
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Estilos para los controles del formulario */
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #C3C8A8; /* Color secundario */
+  font-size: 1.2rem;
+  background-color: #ffffff;
+  color: #000000; /* Texto negro */
+  margin-bottom: 15px;
+}
+
+/* Estilo del botón */
+.btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #9AB588; /* Color de acento */
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #7a9b6c; /* Oscurecer un poco el color al hacer hover */
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+input[type="file"].form-control {
+  border: none;
+  background-color: #eaeaea;
+}
+
+input[type="file"].form-control:hover {
+  background-color: #dcdcdc;
+}
