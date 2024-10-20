@@ -1,0 +1,217 @@
+<div class="property-form-container">
+    <h1>Editar Propiedad</h1>
+    <form (submit)="onSubmit($event)">
+      
+      <!-- Nombre de la propiedad -->
+      <div class="form-group">
+        <label for="propertyName">Nombre de la Propiedad:</label>
+        <input
+          type="text"
+          id="propertyName"
+          (input)="updateProperty('name', $event)"
+          [value]="propertyData.name"
+          class="form-control"
+          placeholder="Introduce el nombre de la propiedad"
+          required
+        />
+      </div>
+  
+      <!-- Descripción -->
+      <div class="form-group">
+        <label for="description">Descripción:</label>
+        <textarea
+          id="description"
+          (input)="updateProperty('description', $event)"
+          [value]="propertyData.description"
+          class="form-control"
+          rows="4"
+          placeholder="Introduce una descripción de la propiedad"
+          required
+        ></textarea>
+      </div>
+  
+      <!-- Municipio -->
+      <div class="form-group">
+        <label for="municipality">Municipio:</label>
+        <input
+          type="text"
+          id="municipality"
+          (input)="updateProperty('municipality', $event)"
+          [value]="propertyData.municipality"
+          class="form-control"
+          placeholder="Introduce el municipio"
+          required
+        />
+      </div>
+  
+      <!-- Departamento -->
+      <div class="form-group">
+        <label for="department">Departamento:</label>
+        <input
+          type="text"
+          id="department"
+          (input)="updateProperty('department', $event)"
+          [value]="propertyData.department"
+          class="form-control"
+          placeholder="Introduce el departamento"
+          required
+        />
+      </div>
+  
+      <!-- Tipo de entrada -->
+      <div class="form-group">
+        <label for="typeOfEntrance">Tipo de Entrada:</label>
+        <input
+          type="text"
+          id="typeOfEntrance"
+          (input)="updateProperty('typeOfEntrance', $event)"
+          [value]="propertyData.typeOfEntrance"
+          class="form-control"
+          placeholder="Introduce el tipo de entrada"
+          required
+        />
+      </div>
+  
+      <!-- Dirección -->
+      <div class="form-group">
+        <label for="address">Dirección:</label>
+        <input
+          type="text"
+          id="address"
+          (input)="updateProperty('address', $event)"
+          [value]="propertyData.address"
+          class="form-control"
+          placeholder="Introduce la dirección"
+          required
+        />
+      </div>
+  
+      <!-- Disponibilidad -->
+      <div class="form-group">
+        <label for="isAvailable">Disponibilidad:</label>
+        <select
+          id="isAvailable"
+          (change)="updateProperty('isAvailable', $event)"
+          class="form-control"
+          [value]="propertyData.isAvailable ? 'true' : 'false'"
+          required
+        >
+          <option [value]="'true'">Disponible</option>
+          <option [value]="'false'">No disponible</option>
+        </select>
+      </div>
+  
+      <!-- Precio por noche -->
+      <div class="form-group">
+        <label for="pricePerNight">Precio por Noche:</label>
+        <input
+          type="number"
+          id="pricePerNight"
+          (input)="updateProperty('pricePerNight', $event)"
+          [value]="propertyData.pricePerNight"
+          class="form-control"
+          placeholder="Introduce el precio por noche"
+          required
+        />
+      </div>
+  
+      <!-- Número de habitaciones -->
+      <div class="form-group">
+        <label for="amountOfRooms">Número de Habitaciones:</label>
+        <input
+          type="number"
+          id="amountOfRooms"
+          (input)="updateProperty('amountOfRooms', $event)"
+          [value]="propertyData.amountOfRooms"
+          class="form-control"
+          placeholder="Introduce el número de habitaciones"
+          required
+        />
+      </div>
+  
+      <!-- Número de baños -->
+      <div class="form-group">
+        <label for="amountOfBathrooms">Número de Baños:</label>
+        <input
+          type="number"
+          id="amountOfBathrooms"
+          (input)="updateProperty('amountOfBathrooms', $event)"
+          [value]="propertyData.amountOfBathrooms"
+          class="form-control"
+          placeholder="Introduce el número de baños"
+          required
+        />
+      </div>
+  
+      <!-- Capacidad -->
+      <div class="form-group">
+        <label for="amountOfResidents">Capacidad (Número de Residentes):</label>
+        <input
+          type="number"
+          id="amountOfResidents"
+          (input)="updateProperty('amountOfResidents', $event)"
+          [value]="propertyData.amountOfResidents"
+          class="form-control"
+          placeholder="Introduce la capacidad de personas"
+          required
+        />
+      </div>
+  
+      <!-- Apto para mascotas -->
+      <div class="form-group">
+        <label for="isPetFriendly">¿Apto para Mascotas?:</label>
+        <select
+          id="isPetFriendly"
+          (change)="updateProperty('isPetFriendly', $event)"
+          class="form-control"
+          [value]="propertyData.isPetFriendly ? 'true' : 'false'"
+        >
+          <option [value]="'true'">Sí</option>
+          <option [value]="'false'">No</option>
+        </select>
+      </div>
+  
+      <!-- Tiene piscina -->
+      <div class="form-group">
+        <label for="hasPool">¿Tiene Piscina?:</label>
+        <select
+          id="hasPool"
+          (change)="updateProperty('hasPool', $event)"
+          class="form-control"
+          [value]="propertyData.hasPool ? 'true' : 'false'"
+        >
+          <option [value]="'true'">Sí</option>
+          <option [value]="'false'">No</option>
+        </select>
+      </div>
+  
+      <!-- Tiene asador -->
+      <div class="form-group">
+        <label for="hasGrill">¿Tiene Asador?:</label>
+        <select
+          id="hasGrill"
+          (change)="updateProperty('hasGrill', $event)"
+          class="form-control"
+          [value]="propertyData.hasGrill ? 'true' : 'false'"
+        >
+          <option [value]="'true'">Sí</option>
+          <option [value]="'false'">No</option>
+        </select>
+      </div>
+  
+      <!-- Imágenes de la propiedad -->
+      <div class="form-group">
+        <label for="photo">Imágenes de la Propiedad:</label>
+        <input
+          type="file"
+          id="photo"
+          (change)="onFileSelected($event)"
+          class="form-control"
+        />
+      </div>
+  
+      <!-- Botón para enviar -->
+      <button type="submit" class="btn btn-primary">Actualizar Propiedad</button>
+    </form>
+  </div>
+  

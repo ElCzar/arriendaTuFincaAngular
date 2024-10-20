@@ -85,12 +85,17 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/property-form/property-form.component.css",
+              "src/property-form/property-edit.component.css"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "0e9b4145-b9e6-4a42-a573-487f7cb00592"
   }
 }
