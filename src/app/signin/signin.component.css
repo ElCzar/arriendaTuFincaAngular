@@ -3,12 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   background-color: #dfe0d6; /* Fondo verde claro */
   border-radius: 20px;
   padding: 40px;
   width: 400px;
-  margin: 20px auto;
+  margin: 20px auto; /* Ajusta el margen para separar del header y footer */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -16,6 +15,7 @@ h1 {
   font-family: 'Noto Serif', serif;
   color: #000;
   margin-bottom: 20px;
+  text-align: center; /* Centrar el texto */
 }
 
 form {
@@ -54,6 +54,22 @@ form {
   border-radius: 50%; /* Hace que la imagen sea circular */
   object-fit: cover;
   margin-top: 10px;
+}
+
+.profile-picture {
+  padding: 5px;
+  border: 2px solid #9f6d65; /* Color del borde */
+  border-radius: 25px; /* Bordes redondeados */
+  background-color: #fafaf8; /* Fondo blanco */
+  font-family: 'Noto Serif', serif;
+  color: #7f4d45;
+  text-align: center; /
+}
+
+.profile-picture-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button {

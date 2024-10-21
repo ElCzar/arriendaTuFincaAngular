@@ -6,13 +6,13 @@
   <form (ngSubmit)="onSubmit()"> <!-- Vincular el evento submit al método onSubmit -->
     <!-- Formulario de registro -->
 
-     <!-- Foto de Perfil -->
-    <div class="input-group">
+    <!-- Foto de Perfil -->
+    <div class="input-group profile-picture-container">
       <label for="profilePicture">Foto de Perfil</label>
-      <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+      <input type="file" id="profilePicture" name="profilePicture" accept="image/*" class="profile-picture" (change)="onFileSelected($event)">
+      <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" alt="Vista previa de la foto de perfil" class="profile-picture-preview">
     </div>
 
-    
     <div class="input-group">
       <label for="username">Nombre</label>
       <input type="text" id="username" name="username" placeholder="Ingrese su nombre">
