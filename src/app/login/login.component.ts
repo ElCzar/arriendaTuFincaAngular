@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from '../footer/footer.component';
 
@@ -7,8 +8,13 @@ import { FooterComponent } from '../footer/footer.component';
   standalone: true,
   imports: [HeaderComponent, FooterComponent],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'] // Corrige 'styleUrl' a 'styleUrls'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  constructor(private router: Router) { }
 
+  //metodo para manejar login
+  onSubmit() {
+    this.router.navigate(['/home']);
+  }
 }
