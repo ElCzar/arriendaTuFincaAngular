@@ -14,4 +14,8 @@ export class HeaderComponent {
   login() {
     this.router.navigate(['/login']);
   }
+
+  signin() {
+    this.router.navigate(['/signin']);
+  }
 }

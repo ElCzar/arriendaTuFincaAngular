@@ -4,7 +4,7 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-signin',
   standalone: true,
   imports: [HeaderComponent, FooterComponent],
   templateUrl: './signin.component.html',
@@ -13,7 +13,7 @@ import { FooterComponent } from '../footer/footer.component';
 export class SigninComponent {
   profilePictureUrl: string | ArrayBuffer | null = null;
 
-  constructor(private readonly router: Router) {}
+  constructor(private router: Router) {}
 
   // Método para manejar el registro
   onSubmit() {
@@ -24,7 +24,7 @@ export class SigninComponent {
   // Método para manejar la selección de archivos
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (input.files?.[0]) {
+    if (input.files && input.files[0]) {
       const file = input.files[0];
       const reader = new FileReader();
       reader.onload = () => {
