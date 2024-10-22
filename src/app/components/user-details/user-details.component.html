@@ -1,0 +1,39 @@
+<div class="user-details-container">
+    <h1>Detalles del Usuario</h1>
+  
+    <!-- Información básica del usuario -->
+    <div class="user-info">
+      <p><strong>Nombre:</strong> {{ userData.name }} {{ userData.surname }}</p>
+      <p><strong>Email:</strong> {{ userData.email }}</p>
+      <p><strong>Teléfono:</strong> {{ userData.phone }}</p>
+      <p><strong>Es Host:</strong> {{ userData.isHost ? 'Sí' : 'No' }}</p>
+      <p><strong>Es Inquilino:</strong> {{ userData.isRenter ? 'Sí' : 'No' }}</p>
+    </div>
+  
+    <!-- Lista de propiedades si el usuario es Host -->
+    <div *ngIf="userData.isHost" class="host-properties">
+      <h2>Propiedades del Usuario</h2>
+      <div *ngIf="userData.properties && userData.properties.length > 0">
+        <ul class="property-list">
+          <li *ngFor="let property of userData.properties">
+            <h3>{{ property.name }}</h3>
+            <p><strong>Dirección:</strong> {{ property.address }}</p>
+            <p><strong>Precio por noche:</strong> {{ property.pricePerNight }}</p>
+            <p><strong>Municipio:</strong> {{ property.municipality }}</p>
+            <p><strong>Departamento:</strong> {{ property.department }}</p>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!userData.properties || userData.properties.length === 0">
+        <p>Este usuario no tiene propiedades registradas.</p>
+      </div>
+    </div>
+  
+    <!-- Sección especial para Inquilino -->
+    <div *ngIf="userData.isRenter" class="renter-info">
+      <h2>Historial de Reservas</h2>
+      <!-- Aquí podrías agregar una lista de reservas si tienes esa información -->
+      <p>Este usuario ha realizado reservas como inquilino.</p>
+    </div>
+  </div>
+  

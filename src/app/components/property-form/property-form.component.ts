@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PropertyService } from '../../services/property.service';  // Ajusta la ruta al servicio
+import { PropertyService } from '../../services/property.service';
 
 @Component({
   selector: 'app-property-form',
@@ -7,7 +7,7 @@ import { PropertyService } from '../../services/property.service';  // Ajusta la
   styleUrls: ['./property-form.component.css']
 })
 export class PropertyFormComponent {
-  propertyData = {
+  propertyData: any = {
     name: '',
     description: '',
     municipality: '',
@@ -15,56 +15,48 @@ export class PropertyFormComponent {
     typeOfEntrance: '',
     address: '',
     link: '',
-    isAvailable: true,
     pricePerNight: 0,
     amountOfRooms: 0,
     amountOfBathrooms: 0,
     amountOfResidents: 0,
     isPetFriendly: false,
     hasPool: false,
-    hasGril: false,
-    photo: null
+    hasGrill: false,
+    photo: null,
+    ownerEmail: ''
   };
 
-  constructor(private propertyService: PropertyService) { }
+  constructor(private propertyService: PropertyService) {}
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    this.propertyData.photo = file;
+  updateProperty(field: string, event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.type === 'checkbox') {
+      this.propertyData[field] = target.checked;
+    } else {
+      this.propertyData[field] = target.value;
+    }
   }
 
-  onSubmit() {
-    const formData = new FormData();
-  
-    // Añadir cada propiedad manualmente
-    formData.append('name', this.propertyData.name);
-    formData.append('description', this.propertyData.description);
-    formData.append('municipality', this.propertyData.municipality);
-    formData.append('department', this.propertyData.department);
-    formData.append('typeOfEntrance', this.propertyData.typeOfEntrance);
-    formData.append('address', this.propertyData.address);
-    formData.append('link', this.propertyData.link);
-    formData.append('isAvailable', this.propertyData.isAvailable.toString());
-    formData.append('pricePerNight', this.propertyData.pricePerNight.toString());
-    formData.append('amountOfRooms', this.propertyData.amountOfRooms.toString());
-    formData.append('amountOfBathrooms', this.propertyData.amountOfBathrooms.toString());
-    formData.append('amountOfResidents', this.propertyData.amountOfResidents.toString());
-    formData.append('isPetFriendly', this.propertyData.isPetFriendly.toString());
-    formData.append('hasPool', this.propertyData.hasPool.toString());
-    formData.append('hasGril', this.propertyData.hasGril.toString());
-  
-    if (this.propertyData.photo) {
-      formData.append('photo', this.propertyData.photo);
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length) {
+      this.propertyData.photo = input.files[0]; // Para la imagen
     }
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault(); // Evita el comportamiento por defecto del formulario
   
-    this.propertyService.createProperty(formData).subscribe(
-      (response: any) => {
-        console.log('Property created successfully', response);
+    // Llamamos al servicio para crear la propiedad usando HttpClient
+    this.propertyService.createProperty(this.propertyData).subscribe(
+      (response) => {
+        console.log('Propiedad creada exitosamente', response);
+        // Lógica adicional, como redirigir o limpiar el formulario
       },
-      (error: any) => {
-        console.error('Error creating property', error);
+      (error) => {
+        console.error('Error al crear la propiedad', error);
+        // Manejar el error aquí
       }
     );
   }
-  
-}  
+}

@@ -1,7 +1,6 @@
 <div class="property-form-container">
     <h1>Editar Propiedad</h1>
     <form (submit)="onSubmit($event)">
-      
       <!-- Nombre de la propiedad -->
       <div class="form-group">
         <label for="propertyName">Nombre de la Propiedad:</label>
@@ -113,90 +112,6 @@
           placeholder="Introduce el precio por noche"
           required
         />
-      </div>
-  
-      <!-- Número de habitaciones -->
-      <div class="form-group">
-        <label for="amountOfRooms">Número de Habitaciones:</label>
-        <input
-          type="number"
-          id="amountOfRooms"
-          (input)="updateProperty('amountOfRooms', $event)"
-          [value]="propertyData.amountOfRooms"
-          class="form-control"
-          placeholder="Introduce el número de habitaciones"
-          required
-        />
-      </div>
-  
-      <!-- Número de baños -->
-      <div class="form-group">
-        <label for="amountOfBathrooms">Número de Baños:</label>
-        <input
-          type="number"
-          id="amountOfBathrooms"
-          (input)="updateProperty('amountOfBathrooms', $event)"
-          [value]="propertyData.amountOfBathrooms"
-          class="form-control"
-          placeholder="Introduce el número de baños"
-          required
-        />
-      </div>
-  
-      <!-- Capacidad -->
-      <div class="form-group">
-        <label for="amountOfResidents">Capacidad (Número de Residentes):</label>
-        <input
-          type="number"
-          id="amountOfResidents"
-          (input)="updateProperty('amountOfResidents', $event)"
-          [value]="propertyData.amountOfResidents"
-          class="form-control"
-          placeholder="Introduce la capacidad de personas"
-          required
-        />
-      </div>
-  
-      <!-- Apto para mascotas -->
-      <div class="form-group">
-        <label for="isPetFriendly">¿Apto para Mascotas?:</label>
-        <select
-          id="isPetFriendly"
-          (change)="updateProperty('isPetFriendly', $event)"
-          class="form-control"
-          [value]="propertyData.isPetFriendly ? 'true' : 'false'"
-        >
-          <option [value]="'true'">Sí</option>
-          <option [value]="'false'">No</option>
-        </select>
-      </div>
-  
-      <!-- Tiene piscina -->
-      <div class="form-group">
-        <label for="hasPool">¿Tiene Piscina?:</label>
-        <select
-          id="hasPool"
-          (change)="updateProperty('hasPool', $event)"
-          class="form-control"
-          [value]="propertyData.hasPool ? 'true' : 'false'"
-        >
-          <option [value]="'true'">Sí</option>
-          <option [value]="'false'">No</option>
-        </select>
-      </div>
-  
-      <!-- Tiene asador -->
-      <div class="form-group">
-        <label for="hasGrill">¿Tiene Asador?:</label>
-        <select
-          id="hasGrill"
-          (change)="updateProperty('hasGrill', $event)"
-          class="form-control"
-          [value]="propertyData.hasGrill ? 'true' : 'false'"
-        >
-          <option [value]="'true'">Sí</option>
-          <option [value]="'false'">No</option>
-        </select>
       </div>
   
       <!-- Imágenes de la propiedad -->

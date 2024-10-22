@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PropertyService } from '../../services/property.service'; // Asegúrate de que el servicio esté creado
 
 @Component({
   selector: 'app-edit-property',
@@ -29,31 +28,41 @@ export class EditPropertyComponent implements OnInit {
   propertyId!: string;
 
   constructor(
-    private route: ActivatedRoute, 
-    private router: Router, 
-    private propertyService: PropertyService
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    // Obtenemos el id de la propiedad desde la URL
     this.propertyId = this.route.snapshot.paramMap.get('id')!;
     this.loadPropertyData();
   }
 
-  // Carga la información de la propiedad desde el backend
+  // Carga la información de la propiedad
   loadPropertyData(): void {
-    this.propertyService.getPropertyById(this.propertyId).subscribe(
-      (response) => {
-        this.propertyData = response;  // Prellenamos los campos con los datos de la propiedad
-      },
-      (error) => {
-        console.error('Error al cargar la propiedad', error);
-      }
-    );
+    // Aquí llamaríamos al servicio que obtiene los datos desde el backend usando `propertyId`
+    // Simularemos la carga de datos por ahora
+    this.propertyData = {
+      name: 'Casa en la playa',
+      description: 'Hermosa casa con vista al mar',
+      municipality: 'Cartagena',
+      department: 'Bolívar',
+      typeOfEntrance: 'Entrada privada',
+      address: 'Calle 123, Playa',
+      isAvailable: true,
+      pricePerNight: 150,
+      amountOfRooms: 3,
+      amountOfBathrooms: 2,
+      amountOfResidents: 6,
+      isPetFriendly: true,
+      hasPool: true,
+      hasGrill: false,
+      photo: null
+    };
   }
 
-  updateProperty(field: string, event: Event): void {
+  updateProperty(field: string, event: Event) {
     const target = event.target as HTMLInputElement;
-  
     if (target.type === 'checkbox') {
       this.propertyData[field] = target.checked;
     } else {
@@ -61,25 +70,17 @@ export class EditPropertyComponent implements OnInit {
     }
   }
 
-  onFileSelected(event: Event): void {
+  onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length) {
-      this.propertyData.photo = input.files[0]; // Assuming single file upload
+      this.propertyData.photo = input.files[0]; // Para la imagen
     }
   }
 
-  // Este método envía la propiedad actualizada al backend
-  onSubmit(event: Event): void {
+  onSubmit(event: Event) {
     event.preventDefault();
-    this.propertyService.updateProperty(this.propertyId, this.propertyData).subscribe(
-      (response) => {
-        console.log('Propiedad actualizada con éxito', response);
-        this.router.navigate(['/arrendador/mis-propiedades']);
-      },
-      (error) => {
-        console.error('Error al actualizar la propiedad', error);
-      }
-    );
+    // Aquí llamarías al servicio que envía los datos actualizados al backend
+    console.log('Propiedad actualizada:', this.propertyData);
+    this.router.navigate(['/arrendador/mis-propiedades']); // Redirige a otra página después de la actualización
   }
 }
-

@@ -1,3 +1,9 @@
-<a [routerLink]="['/arrendador/crear-propiedad']">Crear la Propiedad</a>
-<a [routerLink]="['/propiedad/editar-propiedad/:id']">edit la Propiedad</a>
-<router-outlet></router-outlet>
+<nav>
+    <ul>
+      <li><a routerLink="/crear-propiedad">Crear Propiedad</a></li>
+      <li><a routerLink="/editar-propiedad/1">Editar Propiedad</a></li>
+      <li><a routerLink="/ver-usuario/1">Ver Usuario</a></li>
+    </ul>
+  </nav>
+  
+  <router-outlet></router-outlet>
