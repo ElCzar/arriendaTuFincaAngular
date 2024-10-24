@@ -14,4 +14,9 @@ export class UserService {
   getUserById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
+
+  // Registrar un nuevo usuario
+  registerUser(user: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, user);
+  }
 }

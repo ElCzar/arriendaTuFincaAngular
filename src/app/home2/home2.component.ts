@@ -5,9 +5,9 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-home2',
   standalone: true,
-  imports: [HearderAuthComponent, FooterComponent],
+  imports: [FooterComponent, HearderAuthComponent],
   templateUrl: './home2.component.html',
-  styleUrl: './home2.component.css'
+  styleUrls: ['./home2.component.css'] // Corregido: styleUrls en lugar de styleUrl
 })
 export class Home2Component {
 
