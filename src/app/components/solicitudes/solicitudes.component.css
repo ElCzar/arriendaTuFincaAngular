@@ -1,0 +1,95 @@
+/* Tipografías */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@400;700&display=swap');
+
+/* Estilos generales */
+body {
+  background-color: #ffffff; /* Fondo blanco */
+  font-family: 'Noto Serif HK', serif;
+  color: #000000; /* Texto negro */
+}
+
+/* Contenedor de solicitudes */
+.solicitudes-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8; /* Fondo neutro */
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+thead {
+  background-color: #9F6D65; /* Color primario */
+  color: #ffffff;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilo de los botones */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Botón Aceptar */
+button[ng-reflect-ng-if="mostrarBotonAceptarCancelar"] {
+  background-color: #9AB588; /* Color de acento */
+  color: #ffffff;
+}
+
+button[ng-reflect-ng-if="mostrarBotonAceptarCancelar"]:hover {
+  background-color: #7a9b6c; /* Oscurecer un poco el color al hacer hover */
+}
+
+/* Botón Cancelar */
+button[ng-reflect-ng-if="mostrarBotonAceptarCancelar"] + button {
+  background-color: #E57373; /* Rojo claro */
+  color: #ffffff;
+}
+
+button[ng-reflect-ng-if="mostrarBotonAceptarCancelar"] + button:hover {
+  background-color: #d32f2f; /* Rojo oscuro */
+}
+
+/* Botón Calificar */
+button[ng-reflect-ng-if="mostrarBotonCalificar"] {
+  background-color: #FFD54F; /* Amarillo */
+  color: #000000;
+}
+
+button[ng-reflect-ng-if="mostrarBotonCalificar"]:hover {
+  background-color: #FFB300; /* Amarillo oscuro */
+}

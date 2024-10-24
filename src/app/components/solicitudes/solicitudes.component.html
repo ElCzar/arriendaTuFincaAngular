@@ -1,1 +1,30 @@
-<p>solicitudes works!</p>
+<div class="solicitudes-container">
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha y Hora de Solicitud</th>
+        <th>Fecha de Llegada</th>
+        <th>Fecha de Salida</th>
+        <th>Valor</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let solicitud of solicitudes">
+        <td>{{ solicitud.nombre }}</td>
+        <td>{{ solicitud.fechaHoraSolicitud }}</td>
+        <td>{{ solicitud.fechaLlegada }}</td>
+        <td>{{ solicitud.fechaSalida }}</td>
+        <td>{{ solicitud.valor }}</td>
+        <td>{{ solicitud.estado }}</td>
+        <td>
+          <button *ngIf="mostrarBotonAceptarCancelar(solicitud)" (click)="aceptarSolicitud(solicitud)">Aceptar</button>
+          <button *ngIf="mostrarBotonAceptarCancelar(solicitud)" (click)="cancelarSolicitud(solicitud)">Cancelar</button>
+          <button *ngIf="mostrarBotonCalificar(solicitud)" (click)="calificarSolicitud(solicitud)">Calificar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
