@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { PropertyService } from '../../services/property.service';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-property-form',
   templateUrl: './property-form.component.html',
-  styleUrls: ['./property-form.component.css']
+  styleUrls: ['./property-form.component.css'],
+  standalone: true, // Marca el componente como standalone
+  imports: [HeaderComponent, FooterComponent] // Asegúrate de importar HeaderComponent y FooterComponent aquí
 })
 export class PropertyFormComponent {
   propertyData: any = {

@@ -1,9 +1,10 @@
-<nav>
-    <ul>
-      <li><a routerLink="/crear-propiedad">Crear Propiedad</a></li>
-      <li><a routerLink="/editar-propiedad/1">Editar Propiedad</a></li>
-      <li><a routerLink="/ver-usuario/1">Ver Usuario</a></li>
-    </ul>
-  </nav>
-  
-  <router-outlet></router-outlet>
+<!-- app.component.html -->
+<app-header></app-header> <!-- Componente de cabecera -->
+
+<!-- Contenedor principal donde las rutas renderizan los componentes -->
+<main>
+  <router-outlet></router-outlet> <!-- Este es el lugar donde los componentes basados en rutas serán renderizados -->
+</main>
+
+<!-- Footer -->
+<app-footer></app-footer> <!-- Componente de pie de página -->`
