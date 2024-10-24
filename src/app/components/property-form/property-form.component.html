@@ -1,14 +1,14 @@
 <div class="property-form-container">
   <h1>Crear Propiedad</h1>
-  <form (submit)="onSubmit($event)">
+  <form (ngSubmit)="onSubmit($event)">
     <!-- Nombre de la propiedad -->
     <div class="form-group">
-      <label for="propertyName">Nombre de la Propiedad:</label>
+      <label for="name">Nombre de la Propiedad:</label>
       <input
         type="text"
-        id="propertyName"
-        (input)="updateProperty('name', $event)"
-        [value]="propertyData.name"
+        id="name"
+        [(ngModel)]="propertyData.name"
+        name="name"
         class="form-control"
         placeholder="Introduce el nombre de la propiedad"
         required
@@ -20,8 +20,8 @@
       <label for="description">Descripción:</label>
       <textarea
         id="description"
-        (input)="updateProperty('description', $event)"
-        [value]="propertyData.description"
+        [(ngModel)]="propertyData.description"
+        name="description"
         class="form-control"
         rows="4"
         placeholder="Introduce una descripción de la propiedad"
@@ -35,8 +35,8 @@
       <input
         type="text"
         id="municipality"
-        (input)="updateProperty('municipality', $event)"
-        [value]="propertyData.municipality"
+        [(ngModel)]="propertyData.municipality"
+        name="municipality"
         class="form-control"
         placeholder="Introduce el municipio"
         required
@@ -49,8 +49,8 @@
       <input
         type="text"
         id="department"
-        (input)="updateProperty('department', $event)"
-        [value]="propertyData.department"
+        [(ngModel)]="propertyData.department"
+        name="department"
         class="form-control"
         placeholder="Introduce el departamento"
         required
@@ -63,8 +63,8 @@
       <input
         type="text"
         id="typeOfEntrance"
-        (input)="updateProperty('typeOfEntrance', $event)"
-        [value]="propertyData.typeOfEntrance"
+        [(ngModel)]="propertyData.typeOfEntrance"
+        name="typeOfEntrance"
         class="form-control"
         placeholder="Introduce el tipo de entrada"
         required
@@ -77,28 +77,13 @@
       <input
         type="text"
         id="address"
-        (input)="updateProperty('address', $event)"
-        [value]="propertyData.address"
+        [(ngModel)]="propertyData.address"
+        name="address"
         class="form-control"
         placeholder="Introduce la dirección"
         required
       />
     </div>
-
-    <!-- Link de la propiedad -->
-    <div class="form-group">
-      <label for="link">Enlace de detalles de la propiedad:</label>
-      <input
-        type="text"
-        id="link"
-        (input)="updateProperty('link', $event)"
-        [value]="propertyData.link"
-        class="form-control"
-        placeholder="Introduce el enlace"
-        required
-      />
-    </div>
-
 
     <!-- Precio por noche -->
     <div class="form-group">
@@ -106,8 +91,8 @@
       <input
         type="number"
         id="pricePerNight"
-        (input)="updateProperty('pricePerNight', $event)"
-        [value]="propertyData.pricePerNight"
+        [(ngModel)]="propertyData.pricePerNight"
+        name="pricePerNight"
         class="form-control"
         placeholder="Introduce el precio por noche"
         required
@@ -120,8 +105,8 @@
       <input
         type="number"
         id="amountOfRooms"
-        (input)="updateProperty('amountOfRooms', $event)"
-        [value]="propertyData.amountOfRooms"
+        [(ngModel)]="propertyData.amountOfRooms"
+        name="amountOfRooms"
         class="form-control"
         placeholder="Introduce la cantidad de habitaciones"
         required
@@ -134,8 +119,8 @@
       <input
         type="number"
         id="amountOfBathrooms"
-        (input)="updateProperty('amountOfBathrooms', $event)"
-        [value]="propertyData.amountOfBathrooms"
+        [(ngModel)]="propertyData.amountOfBathrooms"
+        name="amountOfBathrooms"
         class="form-control"
         placeholder="Introduce la cantidad de baños"
         required
@@ -148,8 +133,8 @@
       <input
         type="number"
         id="amountOfResidents"
-        (input)="updateProperty('amountOfResidents', $event)"
-        [value]="propertyData.amountOfResidents"
+        [(ngModel)]="propertyData.amountOfResidents"
+        name="amountOfResidents"
         class="form-control"
         placeholder="Introduce la cantidad de residentes"
         required
@@ -158,16 +143,15 @@
 
     <!-- Acepta mascotas -->
     <div class="form-group">
-      <label for="isPetFriendly">Acepta Mascotas:</label>
+      <label for="isPetFriendly">Es Pet Friendly:</label>
       <input
         type="checkbox"
-        id="petFriendly"
-        (change)="updateProperty('petFriendly', $event)"
-        [checked]="propertyData.petFriendly"
+        id="isPetFriendly"
+        [(ngModel)]="propertyData.isPetFriendly"
+        name="isPetFriendly"
         class="form-control-checkbox"
       />
     </div>
-
 
     <!-- Tiene piscina -->
     <div class="form-group">
@@ -175,24 +159,23 @@
       <input
         type="checkbox"
         id="hasPool"
-        (change)="updateProperty('hasPool', $event)"
-        [checked]="propertyData.hasPool"
+        [(ngModel)]="propertyData.hasPool"
+        name="hasPool"
         class="form-control-checkbox"
       />
     </div>
 
     <!-- Tiene parrilla -->
     <div class="form-group">
-      <label for="hasGrill">Tiene Parrilla:</label>
+      <label for="hasGril">Tiene Parrilla:</label>
       <input
         type="checkbox"
-        id="hasGrill"
-        (change)="updateProperty('hasGrill', $event)"
-        [checked]="propertyData.hasGrill"
+        id="hasGril"
+        [(ngModel)]="propertyData.hasGril"
+        name="hasGril"
         class="form-control-checkbox"
       />
     </div>
-
 
     <!-- Email del propietario -->
     <div class="form-group">
@@ -200,15 +183,13 @@
       <input
         type="email"
         id="ownerEmail"
-        (input)="updateProperty('ownerEmail', $event)"
-        [value]="propertyData.ownerEmail"
+        [(ngModel)]="propertyData.ownerEmail"
+        name="ownerEmail"
         class="form-control"
         placeholder="Introduce el correo del propietario"
         required
       />
     </div>
-
-
 
     <!-- Imágenes de la propiedad -->
     <div class="form-group">
