@@ -14,23 +14,23 @@
     </div>
 
     <div class="input-group">
-      <label for="username">Nombre</label>
-      <input type="text" id="username" formControlName="username" placeholder="Ingrese su nombre">
-      <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="error">
+      <label for="name">Nombre</label>
+      <input type="text" id="name" formControlName="name" placeholder="Ingrese su nombre">
+      <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error">
         Nombre es obligatorio.
       </div>
     </div>
     <div class="input-group">
-      <label for="lastname">Apellido</label>
-      <input type="text" id="lastname" formControlName="lastname" placeholder="Ingrese su apellido">
-      <div *ngIf="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched" class="error">
+      <label for="surname">Apellido</label>
+      <input type="text" id="surname" formControlName="surname" placeholder="Ingrese su apellido">
+      <div *ngIf="registerForm.get('surname')?.invalid && registerForm.get('surname')?.touched" class="error">
         Apellido es obligatorio.
       </div>
     </div>
     <div class="input-group">
-      <label for="phoneNumber">Número de Celular</label>
-      <input type="tel" id="phoneNumber" formControlName="phoneNumber" placeholder="Ingrese su número de celular">
-      <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched" class="error">
+      <label for="phone">Número de Celular</label>
+      <input type="tel" id="phone" formControlName="phone" placeholder="Ingrese su número de celular">
+      <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched" class="error">
         Número de celular es obligatorio.
       </div>
     </div>
@@ -48,18 +48,23 @@
         Contraseña es obligatoria.
       </div>
     </div>
+    
+    <!-- Selección de rol -->
     <div class="input-group">
-      <label for="role">Rol</label>
-      <select id="role" formControlName="role">
-        <option value="">Seleccione un rol</option>
-        <option value="arrendador">Arrendador</option>
-        <option value="arrendatario">Arrendatario</option>
-      </select>
-      <div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched" class="error">
-        Rol es obligatorio.
-      </div>
+      <label for="isHost">Es Anfitrión</label>
+      <input type="checkbox" id="host" formControlName="host">
     </div>
-    <button type="submit">Registrarse</button>
+    
+    <div class="input-group">
+      <label for="isRenter">Es Arrendatario</label>
+      <input type="checkbox" id="renter" formControlName="renter">
+    </div>
+    
+    
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrarse</button>
+    <div *ngIf="registerForm.errors?.['roleRequired']" class="error">
+      Debes seleccionar un rol.
+    </div>
   </form>
 </div>
 

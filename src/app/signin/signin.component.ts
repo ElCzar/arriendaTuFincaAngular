@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Importa el Router para la navegación
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms'; // Importa ReactiveFormsModule y Validators
+import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from '../footer/footer.component';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HeaderComponent, FooterComponent], // Agrega ReactiveFormsModule aquí
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent, FooterComponent],
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
@@ -17,25 +18,47 @@ export class SigninComponent {
 
   // Define el formulario y los validadores
   registerForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    lastname: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
-    role: new FormControl('', Validators.required)
-  });
+    host: new FormControl(false),  // checkbox
+    renter: new FormControl(false) // checkbox
+  }, { validators: this.roleValidator });
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router, private userService: UserService) {}
 
   // Método para manejar el registro
   onSubmit() {
     if (this.registerForm.valid) {
-      // Aquí puedes validar el formulario antes de navegar
-      this.router.navigate(['/login']); // Redirige a la página de inicio de sesión después de registrarse
+      const formValue = this.registerForm.value;
+      console.log('Enviando datos del formulario:', formValue);  // Verificar qué se envía
+  
+      this.userService.registerUser(formValue).subscribe(
+        (response) => {
+          console.log('Usuario registrado exitosamente', response);
+          this.router.navigate(['/login']);
+        },
+        (error) => {
+          console.error('Error al registrar el usuario', error);
+          alert('Hubo un error al registrar el usuario. Por favor, inténtalo de nuevo.');
+        }
+      );
     } else {
-      // Manejar el caso en que el formulario no es válido
-      alert('Por favor, completa todos los campos obligatorios.');
+      alert('Por favor, completa todos los campos obligatorios y selecciona al menos un rol.');
     }
+  }
+  
+
+  // Método para verificar que al menos un rol está seleccionado
+  roleValidator(control: AbstractControl): ValidationErrors | null {
+    const isHost = control.get('host')?.value;
+    const isRenter = control.get('renter')?.value;
+    if (!isHost && !isRenter) {
+      return { roleRequired: true };
+    }
+    return null;
   }
 
   // Método para manejar la selección de archivos
