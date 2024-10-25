@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/auth'; // Cambia a la URL de tu API
+  private apiUrl = 'http://localhost:8080/user'; // Cambia a la URL de tu API
   private userIdSubject = new BehaviorSubject<number>(-1); // Variable global para almacenar el ID del usuario
 
   constructor(private http: HttpClient) {}

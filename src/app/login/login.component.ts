@@ -26,7 +26,7 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe(
         (response) => {
           console.log('Usuario autenticado exitosamente', response);
-          this.router.navigate(['/dashboard']); // Redirige a la página del dashboard después de iniciar sesión
+          this.router.navigate(['/home2']); // Redirige a la página del dashboard después de iniciar sesión
         },
         (error) => {
           console.error('Error al iniciar sesión', error);
