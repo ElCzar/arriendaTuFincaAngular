@@ -1,0 +1,25 @@
+<app-hearder-auth></app-hearder-auth>
+
+<div class="pago-container">
+    <h1>Pagar arriendo</h1>
+    <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="valor">Valor de la Propiedad:</label>
+        <input id="valor" type="text" formControlName="valor" class="form-control" placeholder="Introduce el valor de la propiedad">
+      </div>
+      <div class="form-group">
+        <label for="banco">Banco:</label>
+        <select id="banco" formControlName="banco" class="form-control">
+          <option value="" disabled selected>Seleccione un banco</option>
+          <option *ngFor="let banco of bancos" [value]="banco">{{ banco }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="numeroCuenta">Número de Cuenta:</label>
+        <input id="numeroCuenta" type="text" formControlName="numeroCuenta" class="form-control" placeholder="Introduce el número de cuenta">
+      </div>
+      <button type="submit" class="btn" [disabled]="!pagoForm.valid">Pagar</button>
+    </form>
+  </div>
+
+<app-footer></app-footer>
