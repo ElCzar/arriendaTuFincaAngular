@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arrienda-frontend
+  namespace: arriendatufinca
+spec:
+  selector:
+    matchLabels:
+      app: arrienda-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: arrienda-frontend
+    spec:
+      imagePullSecrets:
+        - name: github-secret
+      containers:
+      - name: arrienda-frontend
+        image: localhost:5000/arrienda_tu_finca_frontend:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 20
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arrienda-frontend
+  namespace: arriendatufinca
+spec:
+  selector:
+    app: arrienda-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
