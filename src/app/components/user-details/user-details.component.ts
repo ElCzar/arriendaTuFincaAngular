@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { HeaderComponent } from "../../header/header.component";
-import { FooterComponent } from '../../footer/footer.component';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({

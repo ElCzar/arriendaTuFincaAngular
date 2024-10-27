@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { HeaderComponent } from "../header/header.component";
-import { FooterComponent } from '../footer/footer.component';
-import { UserService } from '../services/user.service';
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-signin',

@@ -2,10 +2,10 @@ import { Routes } from '@angular/router';
 import { PropertyFormComponent } from './components/property-form/property-form.component';
 import { EditPropertyComponent } from './components/edit-property/edit-property.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { SigninComponent } from './signin/signin.component';
-import { Home2Component } from './home2/home2.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { Home2Component } from './components/home2/home2.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },

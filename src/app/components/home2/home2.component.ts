@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HearderAuthComponent } from "../hearder-auth/hearder-auth.component";
+import { HearderAuthComponent } from '../hearder-auth/hearder-auth.component';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({

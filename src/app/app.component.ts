@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { FooterComponent } from "./footer/footer.component";
-import { HeaderComponent } from "./header/header.component";
-import { HearderAuthComponent } from "./hearder-auth/hearder-auth.component";
+import { FooterComponent } from "./components/footer/footer.component";
+import { HeaderComponent } from "./components/header/header.component";
+import { HearderAuthComponent } from "./components/hearder-auth/hearder-auth.component";
 
 @Component({
   selector: 'app-root',
