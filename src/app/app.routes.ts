@@ -6,6 +6,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { Home2Component } from './components/home2/home2.component';
+import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
+import { PayComponent } from './components/pay/pay.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,4 +17,6 @@ export const routes: Routes = [
   { path: 'crear-propiedad', component: PropertyFormComponent },
   { path: 'editar-propiedad/:id', component: EditPropertyComponent },
   { path: 'ver-usuario/:id', component: UserDetailsComponent },
+  { path: 'solicitudes', component: SolicitudesComponent },
+  { path: 'pay', component: PayComponent }
 ];
