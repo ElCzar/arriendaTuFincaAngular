@@ -26,5 +26,10 @@ export class PropertyService {
   searchPropertiesByName(name: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/name`, { params: { name } });
   }
+
+  getAllProperties(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+  
   
 }

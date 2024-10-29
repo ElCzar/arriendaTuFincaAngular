@@ -5,7 +5,11 @@
 <div class="home-container">
   <div class="left-section">
     <h1>Inspírate con todas las localidades</h1>
-    <app-search-bar></app-search-bar>
+    <select [(ngModel)]="selectedPropertyId" (change)="onPropertySelect()">
+      <option *ngFor="let property of properties" [value]="property.id">
+        {{ property.name }}
+      </option>
+    </select>
   </div>
   <div class="right-section">
     <div class="image-collage">
