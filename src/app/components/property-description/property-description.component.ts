@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyService } from '../../services/property.service';
+import { HearderAuthComponent } from "../hearder-auth/hearder-auth.component";
+import { FooterComponent } from "../footer/footer.component";
 
 interface Property {
   id: number;
@@ -29,6 +31,7 @@ interface Property {
   templateUrl: './property-description.component.html',
   styleUrls: ['./property-description.component.css'],
   standalone: true,
+  imports: [HearderAuthComponent, FooterComponent],
 })
 export class PropertyDescriptionComponent implements OnInit {
   property: Property | undefined;
