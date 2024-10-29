@@ -22,4 +22,9 @@ export class UserService {
     }
     return this.http.get(`${this.apiUrl}/info/${userId}`);
   }
+
+  // Actualizar el perfil del usuario
+  updateUserProfile(userId: number, userProfile: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update/${userId}`, userProfile);
+  }
 }

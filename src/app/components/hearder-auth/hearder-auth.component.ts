@@ -52,7 +52,7 @@ export class HearderAuthComponent implements OnInit {
 
   editUser() {
     if (this.userId !== -1) {
-      this.router.navigate(['/edit-user']);
+      this.router.navigate(['/editar-usuario', this.userId]); // Pasar el ID del usuario como parámetro]);
     } else {
       console.error('ID de usuario no válido');
     }

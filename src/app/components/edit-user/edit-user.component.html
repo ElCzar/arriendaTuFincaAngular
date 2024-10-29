@@ -1,0 +1,38 @@
+<app-hearder-auth></app-hearder-auth>
+
+<div class="edit-user-container">
+  <h1>Editar Perfil del Usuario</h1>
+  <form (ngSubmit)="updateUserProfile()">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="userProfile.email" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" [(ngModel)]="userProfile.name" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="surname">Apellido:</label>
+      <input type="text" id="surname" [(ngModel)]="userProfile.surname" name="surname" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Teléfono:</label>
+      <input type="text" id="phone" [(ngModel)]="userProfile.phone" name="phone" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="isHost">Es Anfitrión:</label>
+      <input type="checkbox" id="isHost" [(ngModel)]="userProfile.isHost" name="isHost" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="isRenter">Es Arrendatario:</label>
+      <input type="checkbox" id="isRenter" [(ngModel)]="userProfile.isRenter" name="isRenter" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="imageId">ID de Imagen:</label>
+      <input type="number" id="imageId" [(ngModel)]="userProfile.imageId" name="imageId" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
+  </form>
+</div>
+
+<app-footer></app-footer>

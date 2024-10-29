@@ -5,17 +5,26 @@ import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { HearderAuthComponent } from '../hearder-auth/hearder-auth.component';
 import { FooterComponent } from '../footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-user-details',
+  selector: 'app-edit-user',
   standalone: true,
-  imports: [CommonModule, HearderAuthComponent, FooterComponent],
-  templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  imports: [CommonModule, HearderAuthComponent, FooterComponent, FormsModule],
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css']
 })
-export class UserDetailsComponent implements OnInit {
+export class EditUserComponent implements OnInit {
   userId: number = -1;
-  userProfile: any = {};
+  userProfile: any = {
+    email: '',
+    name: '',
+    surname: '',
+    phone: '',
+    isHost: false,
+    isRenter: false,
+    imageId: 0
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -25,14 +34,13 @@ export class UserDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
-      if (id) {
-        this.userId = +id;
+    this.authService.getUserId().subscribe(id => {
+      this.userId = id;
+      if (this.userId !== -1) {
         this.loadUserProfile();
       } else {
         console.error('ID de usuario no válido');
-        this.router.navigate(['/login']); // Redirige a la página de inicio de sesión si no está autenticado
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -44,6 +52,18 @@ export class UserDetailsComponent implements OnInit {
       },
       (error) => {
         console.error('Error al cargar el perfil del usuario', error);
+      }
+    );
+  }
+
+  updateUserProfile(): void {
+    this.userService.updateUserProfile(this.userId, this.userProfile).subscribe(
+      () => {
+        console.log('Perfil actualizado correctamente');
+        this.router.navigate(['/ver-usuario', this.userId]);
+      },
+      (error) => {
+        console.error('Error al actualizar el perfil del usuario', error);
       }
     );
   }
