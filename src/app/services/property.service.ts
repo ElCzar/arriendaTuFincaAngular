@@ -15,4 +15,12 @@ export class PropertyService {
     return this.http.post(this.apiUrl, property);
   }
 
+  getPropertyById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
+  updateProperty(id: string, propertyData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, propertyData);
+  }
+
 }
