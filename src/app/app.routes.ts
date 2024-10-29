@@ -5,6 +5,7 @@ import { SigninComponent } from './signin/signin.component'; // Importa el compo
 import { Home2Component } from './home2/home2.component';
 import { PayComponent } from './pay/pay.component';
 import { SolicitudesComponent } from './solicitudes/solicitudes.component';
+import { RequestComponent } from './request/request.component';
 
 
 export const routes: Routes = [
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'signin', component: SigninComponent }, // Ruta para el registro
   { path: 'home2', component: Home2Component },
   { path: 'pay', component: PayComponent },
-  { path: 'solicitudes', component: SolicitudesComponent }
+  { path: 'solicitudes', component: SolicitudesComponent },
+  { path: 'request', component: RequestComponent }
 ];

@@ -13,7 +13,7 @@ import { FooterComponent } from "../footer/footer.component";
 })
 export class PayComponent {
   pagoForm: FormGroup;
-  bancos = ['Banco A', 'Banco B', 'Banco C', 'Banco D'];
+  bancos = ['Banco de Bogotá', 'Bancolombia', 'Davivienda', 'BBVA'];
 
   constructor(private readonly fb: FormBuilder) {
     this.pagoForm = this.fb.group({

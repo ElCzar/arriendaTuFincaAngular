@@ -5,7 +5,7 @@
     <table border="1">
       <thead>
         <tr>
-          <th>Nombre</th>
+          <th>Propiedad</th>
           <th>Fecha y Hora de Solicitud</th>
           <th>Fecha de Llegada</th>
           <th>Fecha de Salida</th>
@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let solicitud of solicitudes">
-          <td>{{ solicitud.nombre }}</td>
+          <td>{{ solicitud.propiedad }}</td>
           <td>{{ solicitud.fechaHoraSolicitud }}</td>
           <td>{{ solicitud.fechaLlegada }}</td>
           <td>{{ solicitud.fechaSalida }}</td>

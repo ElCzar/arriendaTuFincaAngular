@@ -5,7 +5,7 @@
     <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="valor">Valor de la Propiedad:</label>
-        <input id="valor" type="text" formControlName="valor" class="form-control" placeholder="Introduce el valor de la propiedad">
+        <input id="valor" type="number" formControlName="valor" class="form-control" placeholder="Introduce el valor de la propiedad">
       </div>
       <div class="form-group">
         <label for="banco">Banco:</label>
