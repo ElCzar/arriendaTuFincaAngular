@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 import { PropertyFormComponent } from './components/property-form/property-form.component';
 import { EditPropertyComponent } from './components/edit-property/edit-property.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
-import { CommentsComponent } from './components/comments/comments.component';
-import { RatingComponent } from './components/rating/rating.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { routes } from './app.routes';
@@ -30,8 +28,6 @@ import { HearderAuthComponent } from './components/hearder-auth/hearder-auth.com
     RouterModule.forRoot(routes),
     PropertyFormComponent,
     SearchBarComponent,
-    CommentsComponent,
-    RatingComponent,
     SolicitudesComponent,
     UserDetailsComponent,
     HearderAuthComponent,
