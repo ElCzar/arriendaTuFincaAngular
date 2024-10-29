@@ -11,6 +11,7 @@ import { EditPropertyComponent } from './components/edit-property/edit-property.
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { routes } from './app.routes';
 
@@ -30,6 +31,7 @@ import { routes } from './app.routes';
     SearchBarComponent,
     CommentsComponent,
     RatingComponent,
+    SolicitudesComponent
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

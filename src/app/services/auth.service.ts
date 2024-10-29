@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -23,6 +23,7 @@ export class AuthService {
     );
   }
 
+
   // Método para cerrar sesión
   logout(): void {
     this.userIdSubject.next(-1); // Resetea el ID del usuario
@@ -30,6 +31,7 @@ export class AuthService {
 
   // Método para obtener el ID del usuario
   getUserId(): Observable<number> {
-    return this.userIdSubject.asObservable();
+    const userId = localStorage.getItem('userId');
+    return of(userId ? +userId : -1);
   }
 }

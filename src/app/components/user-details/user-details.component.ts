@@ -6,7 +6,6 @@ import { UserService } from '../../services/user.service';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from '../footer/footer.component';
 
-
 @Component({
   selector: 'app-user-details',
   standalone: true,
@@ -26,14 +25,13 @@ export class UserDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.userId = +params['id']; // Asegúrate de que el ID del usuario se obtiene correctamente
-      if (!isNaN(this.userId) && this.userId !== -1) {
-        this.loadUserProfile();
-      } else {
-        this.router.navigate(['/login']); // Redirige a la página de inicio de sesión si no está autenticado
-      }
-    });
+    const authenticatedUserId = this.authService.getUserId();
+    if (authenticatedUserId) {
+      this.userId = +authenticatedUserId;
+      this.loadUserProfile();
+    } else {
+      this.router.navigate(['/login']); // Redirige a la página de inicio de sesión si no está autenticado
+    }
   }
 
   loadUserProfile(): void {
