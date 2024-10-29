@@ -4,11 +4,12 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HearderAuthComponent } from "./components/hearder-auth/hearder-auth.component";
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { RatingComponent } from './components/rating/rating.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FooterComponent, HeaderComponent, HearderAuthComponent, SearchBarComponent],
+  imports: [RouterOutlet, FooterComponent, HeaderComponent, HearderAuthComponent, SearchBarComponent, RatingComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

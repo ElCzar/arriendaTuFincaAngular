@@ -1,0 +1,15 @@
+<div class="comments-section">
+  <h2>Comentarios</h2>
+  <div class="review" *ngFor="let comment of comments">
+    <img [src]="comment.photo" alt="Foto de {{ comment.name }}" class="review-photo">
+    <div class="review-content">
+      <p><strong>{{ comment.name }}</strong><br>{{ comment.location }}</p>
+      <app-rating [rating]="comment.stars"></app-rating>
+      <p>{{ comment.comment }}</p>
+    </div>
+  </div>
+  <div class="add-comment">
+    <textarea [(ngModel)]="newComment" placeholder="Añadir un comentario..."></textarea>
+    <button (click)="addComment()">Añadir Comentario</button>
+  </div>
+</div>

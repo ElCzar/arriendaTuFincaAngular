@@ -8,9 +8,10 @@ import { SigninComponent } from './components/signin/signin.component';
 import { Home2Component } from './components/home2/home2.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { PayComponent } from './components/pay/pay.component';
+import { PropertyDescriptionComponent } from './components/property-description/property-description.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: PropertyDescriptionComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'home2', component: Home2Component },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'editar-propiedad/:id', component: EditPropertyComponent },
   { path: 'ver-usuario/:id', component: UserDetailsComponent },
   { path: 'solicitudes', component: SolicitudesComponent },
-  { path: 'pay', component: PayComponent }
+  { path: 'pay', component: PayComponent },
+  { path: 'ver-propiedad/:id', component: PropertyDescriptionComponent },
 ];

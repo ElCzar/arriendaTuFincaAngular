@@ -1,0 +1,31 @@
+<!-- Componente de encabezado -->
+<app-hearder-auth></app-hearder-auth>
+
+<div class="property-container">
+  <!-- Información Principal de la Propiedad -->
+  <div class="property-info">
+    <h1>Granja Villa del Bosque (Título de la vivienda)</h1>
+    <img src="assets/image2.jpg" alt="Imagen de la propiedad" class="property-image">
+    <div class="rating">
+      <!-- Iconos de estrellas -->
+      <app-rating></app-rating>
+    </div>
+    <div class="host-info">
+      <img src="assets/profile-picture.jpg" alt="Foto del anfitrión" class="host-photo">
+      <p><strong>Anfitrión:</strong> Oneida</p>
+    </div>
+    <p><strong>Descripción</strong></p>
+    <p>Zona de trabajo: Una habitación con wifi que es ideal para trabajar.</p>
+  </div>
+
+  <!-- Información de Precio y Reservas -->
+  <div class="reservation-info">
+    <p class="price">$1,200,000 COP noche</p>
+    <button class="reserve-button">Reservar</button>
+    
+    <!-- Reseñas de los huéspedes -->
+    <app-comments></app-comments>
+  </div>
+</div>
+
+<app-footer></app-footer>
