@@ -23,4 +23,5 @@ export const routes: Routes = [
   { path: 'solicitudes', component: SolicitudesComponent },
   { path: 'pay', component: PayComponent },
   { path: 'ver-propiedad/:id', component: PropertyDescriptionComponent },
+  
 ];

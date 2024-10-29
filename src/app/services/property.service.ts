@@ -23,4 +23,8 @@ export class PropertyService {
     return this.http.put(`${this.apiUrl}/${id}`, propertyData);
   }
 
+  searchPropertiesByName(name: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/name`, { params: { name } });
+  }
+  
 }
