@@ -13,6 +13,7 @@ import { SolicitudesComponent } from './components/solicitudes/solicitudes.compo
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { routes } from './app.routes';
 import { HearderAuthComponent } from './components/hearder-auth/hearder-auth.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HearderAuthComponent } from './components/hearder-auth/hearder-auth.com
     SolicitudesComponent,
     UserDetailsComponent,
     HearderAuthComponent,
+    CommentsComponent,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

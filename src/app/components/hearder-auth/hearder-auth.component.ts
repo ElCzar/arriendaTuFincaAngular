@@ -62,4 +62,9 @@ export class HearderAuthComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  createProperty() {
+    // Navegar a la página de creación de propiedad
+    this.router.navigate(['/create-property']);
+  }
 }

@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyService } from '../../services/property.service';
 import { HearderAuthComponent } from "../hearder-auth/hearder-auth.component";
 import { FooterComponent } from "../footer/footer.component";
+import { CommentsComponent } from "../comments/comments.component";
+import { FormsModule } from '@angular/forms';
 
 interface Property {
   id: number;
@@ -31,7 +33,7 @@ interface Property {
   templateUrl: './property-description.component.html',
   styleUrls: ['./property-description.component.css'],
   standalone: true,
-  imports: [HearderAuthComponent, FooterComponent],
+  imports: [HearderAuthComponent, FooterComponent, CommentsComponent, FormsModule],
 })
 export class PropertyDescriptionComponent implements OnInit {
   property: Property | undefined;
@@ -58,7 +60,7 @@ export class PropertyDescriptionComponent implements OnInit {
 
   makeReservation(): void {
     if (this.property) {
-      this.router.navigate(['/home2', this.property.id]);
+      this.router.navigate(['/solicitudes']);
     }
   }
 }

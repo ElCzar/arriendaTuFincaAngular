@@ -1,0 +1,11 @@
+<!-- comments.component.html -->
+<div class="comments-section">
+  <h2>Comentarios</h2>
+  <div *ngFor="let comment of comments">
+    <p><strong>{{ comment.user }}</strong>: {{ comment.text }}</p>
+  </div>
+  <div class="add-comment">
+    <input [(ngModel)]="newComment" placeholder="Añadir un comentario..." />
+    <button (click)="addComment()">Enviar</button>
+  </div>
+</div>
