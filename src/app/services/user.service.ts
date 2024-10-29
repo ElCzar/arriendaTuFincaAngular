@@ -17,6 +17,9 @@ export class UserService {
 
   // Obtener el perfil del usuario
   getUserProfile(userId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${userId}`);
+    if (!userId || isNaN(userId)) {
+      throw new Error('Invalid user ID');
+    }
+    return this.http.get(`${this.apiUrl}/info/${userId}`);
   }
 }

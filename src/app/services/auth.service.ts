@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -16,22 +16,24 @@ export class AuthService {
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
       tap((response: any) => {
-        if (response && response.userId) {
-          this.userIdSubject.next(response.userId); // Almacena el ID del usuario
+        if (response) {
+          this.userIdSubject.next(response); // Almacena el ID del usuario
+          localStorage.setItem('userId', response.toString()); // También almacena en localStorage
         }
       })
     );
   }
 
-
-  // Método para cerrar sesión
-  logout(): void {
-    this.userIdSubject.next(-1); // Resetea el ID del usuario
-  }
-
-  // Método para obtener el ID del usuario
   getUserId(): Observable<number> {
     const userId = localStorage.getItem('userId');
-    return of(userId ? +userId : -1);
+    if (userId) {
+      this.userIdSubject.next(+userId);
+    }
+    return this.userIdSubject.asObservable();
+  }
+
+  logout(): void {
+    localStorage.removeItem('userId');
+    this.userIdSubject.next(-1);
   }
 }

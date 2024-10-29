@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { HeaderComponent } from "../header/header.component";
+import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
@@ -25,13 +25,16 @@ export class UserDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const authenticatedUserId = this.authService.getUserId();
-    if (authenticatedUserId) {
-      this.userId = +authenticatedUserId;
-      this.loadUserProfile();
-    } else {
-      this.router.navigate(['/login']); // Redirige a la página de inicio de sesión si no está autenticado
-    }
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.userId = +id;
+        this.loadUserProfile();
+      } else {
+        console.error('ID de usuario no válido');
+        this.router.navigate(['/login']); // Redirige a la página de inicio de sesión si no está autenticado
+      }
+    });
   }
 
   loadUserProfile(): void {

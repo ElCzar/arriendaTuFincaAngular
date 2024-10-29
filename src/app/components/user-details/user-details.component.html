@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<div class="user-details-container">
+  <h1>Detalles del Usuario</h1>
+  <div *ngIf="userProfile">
+    <p><strong>Email:</strong> {{ userProfile.email }}</p>
+    <p><strong>Nombre:</strong> {{ userProfile.name }}</p>
+    <p><strong>Apellido:</strong> {{ userProfile.surname }}</p>
+    <p><strong>Teléfono:</strong> {{ userProfile.phone }}</p>
+    <p><strong>Es Anfitrión:</strong> {{ userProfile.isHost ? 'Sí' : 'No' }}</p>
+    <p><strong>Es Arrendatario:</strong> {{ userProfile.isRenter ? 'Sí' : 'No' }}</p>
+    <p><strong>ID de Imagen:</strong> {{ userProfile.imageId }}</p>
+  </div>
+  <div *ngIf="!userProfile">
+    <p>Cargando perfil del usuario...</p>
+  </div>
+</div>
+
+<app-footer></app-footer>

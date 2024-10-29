@@ -44,7 +44,7 @@ export class HearderAuthComponent implements OnInit {
 
   viewUser() {
     if (this.userId !== -1) {
-      this.router.navigate(['/user-details', this.userId]); // Pasar el ID del usuario como parámetro
+      this.router.navigate(['/ver-usuario', this.userId]); // Pasar el ID del usuario como parámetro
     } else {
       console.error('ID de usuario no válido');
     }

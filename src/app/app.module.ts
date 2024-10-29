@@ -14,11 +14,13 @@ import { RatingComponent } from './components/rating/rating.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { routes } from './app.routes';
+import { HearderAuthComponent } from './components/hearder-auth/hearder-auth.component';
 
 @NgModule({
   declarations: [
     //AppComponent,
     EditPropertyComponent,
+    
   ],
   imports: [
     AppComponent,
@@ -27,11 +29,12 @@ import { routes } from './app.routes';
     FormsModule,
     RouterModule.forRoot(routes),
     PropertyFormComponent,
-    UserDetailsComponent,
     SearchBarComponent,
     CommentsComponent,
     RatingComponent,
-    SolicitudesComponent
+    SolicitudesComponent,
+    UserDetailsComponent,
+    HearderAuthComponent,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
