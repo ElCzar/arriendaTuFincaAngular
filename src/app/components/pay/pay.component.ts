@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HearderAuthComponent } from "../hearder-auth/hearder-auth.component";
-import { FooterComponent } from "../footer/footer.component";
+
 
 @Component({
   selector: 'app-pay',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HearderAuthComponent, FooterComponent],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './pay.component.html',
   styleUrls: ['./pay.component.css']
 })

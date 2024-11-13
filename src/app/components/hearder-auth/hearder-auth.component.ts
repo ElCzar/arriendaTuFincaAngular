@@ -5,7 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-hearder-auth',
+  selector: 'app-header-auth',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './hearder-auth.component.html',
@@ -58,13 +58,18 @@ export class HearderAuthComponent implements OnInit {
     }
   }
 
+  createProperty() {
+    if (this.userId !== -1) {
+      this.router.navigate(['/crear-propiedad', this.userId]); // Pasar el ID del usuario como parámetro
+    } else {
+      console.error('ID de usuario no válido');
+    }
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
 
-  createProperty() {
-    // Navegar a la página de creación de propiedad
-    this.router.navigate(['/create-property']);
-  }
+  
 }

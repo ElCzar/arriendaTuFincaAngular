@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'home2', component: Home2Component },
-  { path: 'crear-propiedad', component: PropertyFormComponent },
+  { path: 'crear-propiedad/:id', component: PropertyFormComponent },
   { path: 'editar-propiedad/:id', component: EditPropertyComponent },
   { path: 'ver-usuario/:id', component: UserDetailsComponent },
   { path: 'editar-usuario/:id', component: EditUserComponent },

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PropertyService } from '../../services/property.service';
-import { HearderAuthComponent } from '../hearder-auth/hearder-auth.component';
-import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -31,7 +29,7 @@ interface Property {
 @Component({
   selector: 'app-home2',
   standalone: true,
-  imports: [FooterComponent, HearderAuthComponent, CommonModule, FormsModule],
+  imports: [ CommonModule, FormsModule],
   templateUrl: './home2.component.html',
   styleUrls: ['./home2.component.css']
 })

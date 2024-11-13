@@ -1,12 +1,12 @@
 .user-details-container {
     max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-family: 'Noto Serif HK', serif;
     color: #333;
+    margin: 20px auto;
   }
   
   h1, h2 {

@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { HearderAuthComponent } from '../hearder-auth/hearder-auth.component';
-import { FooterComponent } from '../footer/footer.component';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-user',
   standalone: true,
-  imports: [CommonModule, HearderAuthComponent, FooterComponent, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
