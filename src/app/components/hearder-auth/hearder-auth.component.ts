@@ -13,8 +13,12 @@ import { UserService } from '../../services/user.service';
 })
 export class HearderAuthComponent implements OnInit {
   menuVisible = false;
-  userName = 'Nombre del Usuario'; // Puedes obtener esto de un servicio de usuario
   userId: number = -1;
+  userProfile: any = {
+    imageId: 0
+  };
+  userName: string = '';
+  profileImageUrl: string = '';
 
   constructor(private router: Router, private authService: AuthService, private userService: UserService) {}
 
@@ -22,7 +26,9 @@ export class HearderAuthComponent implements OnInit {
     this.authService.getUserId().subscribe(id => {
       this.userId = id;
       if (this.userId !== -1) {
-        this.loadUserName();
+        this.loadUserProfile();
+      } else {
+        console.error('ID de usuario no válido');
       }
     });
   }
@@ -31,15 +37,20 @@ export class HearderAuthComponent implements OnInit {
     this.menuVisible = !this.menuVisible;
   }
 
-  loadUserName(): void {
+  loadUserProfile(): void {
     this.userService.getUserProfile(this.userId).subscribe(
       (profile) => {
-        this.userName = `${profile.name} ${profile.surname}`;
+        this.userProfile = profile;
+        this.profileImageUrl = this.getProfileImageUrl(profile.imageId);
       },
       (error) => {
-        console.error('Error al cargar el nombre del usuario', error);
+        console.error('Error al cargar el perfil del usuario', error);
       }
     );
+  }
+
+  getProfileImageUrl(imageId: number): string {
+    return `http://localhost:8080/image/${imageId}`;
   }
 
   viewUser() {

@@ -8,27 +8,24 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
 }
 
 .logo img {
-    width: 100px;
-    height: 100px;
+    height: 40px;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
     gap: 20px;
-
 }
 
 .nav-links li {
-    display: inline;
-    font-size: 1.5em; /* Ajusta este valor según tus necesidades */
-    font-family: serif;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 .nav-links a {
@@ -39,59 +36,53 @@ header {
 }
 
 .auth-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    position: relative; /* Necesario para el menú desplegable */
+    position: relative;
 }
 
 .profile-pic {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%; /* Hace que la imagen sea circular */
-    cursor: pointer; /* Añade un cursor de puntero para indicar que es clicable */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .dropdown-menu {
     position: absolute;
-    top: 70px; /* Ajusta según sea necesario */
+    top: 50px;
     right: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 200px;
+    padding: 10px;
     z-index: 1000;
-    font-family: serif;
-
 }
 
 .profile-info {
     display: flex;
     align-items: center;
-    padding: 10px;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .profile-pic-large {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    margin-right: 10px;
 }
 
-.dropdown-menu button {
+button {
+    display: block;
     width: 100%;
     padding: 10px;
     border: none;
-    background: none;
-    text-align: left;
+    background-color: #f5f5f5;
     cursor: pointer;
-    font-family: serif; /* Mantén la tipografía */
-    color: #000;
+    text-align: left;
 }
 
-.dropdown-menu button:hover {
-    background-color: #f0f0f0;
+button:hover {
+    background-color: #e0e0e0;
 }
 
 .logout {
