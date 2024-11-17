@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -24,6 +23,7 @@ export class EditUserComponent implements OnInit {
     isRenter: false,
     imageId: 0
   };
+  selectedFile: File | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,11 +59,37 @@ export class EditUserComponent implements OnInit {
     this.userService.updateUserProfile(this.userId, this.userProfile).subscribe(
       () => {
         console.log('Perfil actualizado correctamente');
-        this.router.navigate(['/ver-usuario', this.userId]);
+        if (this.selectedFile) {
+          this.uploadProfilePicture();
+        } else {
+          this.router.navigate(['/ver-usuario', this.userId]);
+        }
       },
       (error) => {
         console.error('Error al actualizar el perfil del usuario', error);
       }
     );
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadProfilePicture(): void {
+    if (this.selectedFile) {
+      console.log('Archivo seleccionado:', this.selectedFile);
+      const formData = new FormData();
+      formData.append('photo', this.selectedFile); // Cambiado a 'photo'
+  
+      this.userService.uploadProfilePicture(this.userId, this.selectedFile!, formData).subscribe(
+        () => {
+          console.log('Foto de perfil subida correctamente');
+          this.router.navigate(['/ver-usuario', this.userId]);
+        },
+        (error) => {
+          console.error('Error al subir la foto de perfil', error);
+        }
+      );
+    }
   }
 }

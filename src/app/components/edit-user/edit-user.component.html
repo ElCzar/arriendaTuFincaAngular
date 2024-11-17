@@ -1,10 +1,8 @@
-
-
-<div class="edit-user-container">
-  <h1>Editar Perfil del Usuario</h1>
+<div class="container">
+  <h2>Editar Perfil de Usuario</h2>
   <form (ngSubmit)="updateUserProfile()">
     <div class="form-group">
-      <label for="email">Email:</label>
+      <label for="email">Correo Electrónico:</label>
       <input type="email" id="email" [(ngModel)]="userProfile.email" name="email" class="form-control" required>
     </div>
     <div class="form-group">
@@ -31,8 +29,10 @@
       <label for="imageId">ID de Imagen:</label>
       <input type="number" id="imageId" [(ngModel)]="userProfile.imageId" name="imageId" class="form-control" required>
     </div>
+    <div class="form-group">
+      <label for="profilePicture">Foto de perfil:</label>
+      <input type="file" id="profilePicture" (change)="onFileSelected($event)" class="form-control">
+    </div>
     <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
   </form>
 </div>
-
-
