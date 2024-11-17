@@ -33,15 +33,12 @@ export class HearderAuthComponent implements OnInit {
     });
   }
 
-  toggleMenu() {
-    this.menuVisible = !this.menuVisible;
-  }
-
   loadUserProfile(): void {
     this.userService.getUserProfile(this.userId).subscribe(
       (profile) => {
         this.userProfile = profile;
         this.profileImageUrl = this.getProfileImageUrl(profile.imageId);
+        this.userName = `${profile.name} ${profile.surname}`;
       },
       (error) => {
         console.error('Error al cargar el perfil del usuario', error);
@@ -50,12 +47,19 @@ export class HearderAuthComponent implements OnInit {
   }
 
   getProfileImageUrl(imageId: number): string {
+    if (!imageId || imageId === 0) {
+      return 'assets/sin_imagen.png'; // Ruta de la imagen predeterminada
+    }
     return `http://localhost:8080/image/${imageId}`;
+  }
+
+  toggleMenu(): void {
+    this.menuVisible = !this.menuVisible;
   }
 
   viewUser() {
     if (this.userId !== -1) {
-      this.router.navigate(['/ver-usuario', this.userId]); // Pasar el ID del usuario como parámetro
+      this.router.navigate(['/ver-usuario', this.userId]);
     } else {
       console.error('ID de usuario no válido');
     }
@@ -63,7 +67,7 @@ export class HearderAuthComponent implements OnInit {
 
   editUser() {
     if (this.userId !== -1) {
-      this.router.navigate(['/editar-usuario', this.userId]); // Pasar el ID del usuario como parámetro]);
+      this.router.navigate(['/editar-usuario', this.userId]);
     } else {
       console.error('ID de usuario no válido');
     }
@@ -71,7 +75,7 @@ export class HearderAuthComponent implements OnInit {
 
   createProperty() {
     if (this.userId !== -1) {
-      this.router.navigate(['/crear-propiedad', this.userId]); // Pasar el ID del usuario como parámetro
+      this.router.navigate(['/crear-propiedad', this.userId]);
     } else {
       console.error('ID de usuario no válido');
     }
