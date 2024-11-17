@@ -71,5 +71,7 @@ export class HearderAuthComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  
+  goToHome2() {
+    this.router.navigate(['/home2']);
+  }
 }

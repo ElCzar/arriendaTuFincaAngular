@@ -22,16 +22,19 @@ header {
     list-style: none;
     display: flex;
     gap: 20px;
+
 }
 
 .nav-links li {
     display: inline;
+    font-size: 1.5em; /* Ajusta este valor según tus necesidades */
+    font-family: serif;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #000;
-    font-size: 1.5em;
+    font-size: 1.8em;
     font-family: serif;
 }
 
