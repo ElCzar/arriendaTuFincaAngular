@@ -11,12 +11,20 @@ interface CommentDTO {
   providedIn: 'root'
 })
 export class CommentsService {
-private apiUrl = 'http://localhost:8080/rental-requests'; // Cambia esta URL por la de tu backend; // Cambia esta URL por la de tu backend
+  private apiUrl = 'http://localhost:8080/rental-requests'; // Cambia esta URL por la de tu backend
 
   constructor(private http: HttpClient) {}
 
-  getComments(): Observable<CommentDTO[]> {
-    return this.http.get<CommentDTO[]>(`${this.apiUrl}/comments`);
+  getRenterComments(email: string): Observable<CommentDTO[]> {
+    return this.http.post<CommentDTO[]>(`${this.apiUrl}/renter-comments`, email);
+  }
+
+  getHostComments(email: string): Observable<CommentDTO[]> {
+    return this.http.post<CommentDTO[]>(`${this.apiUrl}/host-comments`, email);
+  }
+
+  getPropertyComments(propertyId: number): Observable<CommentDTO[]> {
+    return this.http.get<CommentDTO[]>(`${this.apiUrl}/property-comments/${propertyId}`);
   }
 
   addPropertyReview(requestId: number, comment: CommentDTO): Observable<void> {
