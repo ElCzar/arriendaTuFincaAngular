@@ -10,6 +10,7 @@ import { SolicitudesComponent } from './components/solicitudes/solicitudes.compo
 import { PayComponent } from './components/pay/pay.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { PropertyDescriptionComponent } from './components/property-description/property-description.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,7 +23,8 @@ export const routes: Routes = [
   { path: 'editar-usuario/:id', component: EditUserComponent },
   { path: 'solicitudes', component: SolicitudesComponent },
   { path: 'pay', component: PayComponent },
-  { path: 'ver-propiedad/:id', component: PropertyDescriptionComponent }
+  { path: 'ver-propiedad/:id', component: PropertyDescriptionComponent },
+  {path: 'cambiar-contrasena', component: ChangePasswordComponent}
 
   
 ];

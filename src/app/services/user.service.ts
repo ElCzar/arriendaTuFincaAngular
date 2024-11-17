@@ -33,5 +33,9 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/uploadPhoto/${userId}`, formData);
   }
 
+  changePassword(userId: number, changePasswordDTO: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update/${userId}/password`, changePasswordDTO);
+  }
+
   
 }

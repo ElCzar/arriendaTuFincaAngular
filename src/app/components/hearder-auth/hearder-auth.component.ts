@@ -89,4 +89,8 @@ export class HearderAuthComponent implements OnInit {
   goToHome2() {
     this.router.navigate(['/home2']);
   }
+
+  changePassword() {
+    this.router.navigate(['/cambiar-contrasena']);
+  }
 }
