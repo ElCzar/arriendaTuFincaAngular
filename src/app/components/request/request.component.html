@@ -1,0 +1,24 @@
+<div class="request-container">
+    <h1>Crear Solicitud de Arriendo</h1>
+    <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input id="email" type="email" formControlName="email" class="form-control" placeholder="Introduce tu correo electrónico">
+        </div>
+        <div class="form-group">
+            <label for="fechaInicio">Fecha de Inicio:</label>
+            <input id="fechaInicio" type="date" formControlName="fechaInicio" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="fechaFinal">Fecha de Fin:</label>
+            <input id="fechaFinal" type="date" formControlName="fechaFinal" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="numeroResidentes">Número de Residentes:</label>
+            <input id="numeroResidentes" type="number" formControlName="numeroResidentes" class="form-control" placeholder="Introduce el número de residentes">
+        </div>
+        <button type="submit" class="btn" [disabled]="!requestForm.valid">Crear Solicitud</button>
+    </form>
+</div>
+
+<app-footer></app-footer>

@@ -60,7 +60,7 @@ export class PropertyDescriptionComponent implements OnInit {
 
   makeReservation(): void {
     if (this.property) {
-      this.router.navigate(['/solicitudes']);
+      this.router.navigate(['/request']);
     }
   }
 }
