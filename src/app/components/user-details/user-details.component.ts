@@ -16,6 +16,8 @@ import { FooterComponent } from '../footer/footer.component';
 export class UserDetailsComponent implements OnInit {
   userId: number = -1;
   userProfile: any = {};
+  userEmail: string = '';
+  userPassword: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -25,16 +27,8 @@ export class UserDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
-      if (id) {
-        this.userId = +id;
-        this.loadUserProfile();
-      } else {
-        console.error('ID de usuario no válido');
-        this.router.navigate(['/login']); // Redirige a la página de inicio de sesión si no está autenticado
-      }
-    });
+    this.userId = this.route.snapshot.params['id'];
+    this.loadUserProfile();
   }
 
   loadUserProfile(): void {
@@ -46,5 +40,28 @@ export class UserDetailsComponent implements OnInit {
         console.error('Error al cargar el perfil del usuario', error);
       }
     );
+  }
+
+  deleteUser(): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+      const email = prompt('Por favor, ingresa tu correo electrónico para confirmar:');
+      const password = prompt('Por favor, ingresa tu contraseña para confirmar:');
+
+      if (email && password) {
+        const loginDTO = { email, password };
+        this.userService.deleteUser(this.userId, loginDTO).subscribe(
+          () => {
+            alert('Usuario eliminado exitosamente');
+            this.router.navigate(['/home']);
+          },
+          (error) => {
+            console.error('Error al eliminar el usuario', error);
+            alert('Error al eliminar el usuario');
+          }
+        );
+      } else {
+        alert('Correo electrónico y contraseña son requeridos para eliminar el usuario.');
+      }
+    }
   }
 }

@@ -37,5 +37,9 @@ export class UserService {
     return this.http.put(`${this.apiUrl}/update/${userId}/password`, changePasswordDTO);
   }
 
+
+  deleteUser(userId: number, loginDTO: any): Observable<any> {
+    return this.http.request('delete', `${this.apiUrl}/delete/${userId}`, { body: loginDTO });
+  }
   
 }
