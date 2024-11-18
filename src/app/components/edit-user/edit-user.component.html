@@ -1,5 +1,5 @@
-<div class="container">
-  <h2>Editar Perfil de Usuario</h2>
+<div class="user-form-container">
+  <h1>Editar Perfil de Usuario</h1>
   <form (ngSubmit)="updateUserProfile()">
     <div class="form-group">
       <label for="email">Correo Electrónico:</label>
@@ -18,12 +18,16 @@
       <input type="text" id="phone" [(ngModel)]="userProfile.phone" name="phone" class="form-control" required>
     </div>
     <div class="form-group">
-      <label for="isHost">Es Anfitrión:</label>
-      <input type="checkbox" id="isHost" [(ngModel)]="userProfile.isHost" name="isHost" class="form-control">
+      <label for="isHost">
+        <input type="checkbox" id="isHost" [(ngModel)]="userProfile.isHost" name="isHost" class="form-control-checkbox">
+        Es Anfitrión
+      </label>
     </div>
     <div class="form-group">
-      <label for="isRenter">Es Arrendatario:</label>
-      <input type="checkbox" id="isRenter" [(ngModel)]="userProfile.isRenter" name="isRenter" class="form-control">
+      <label for="isRenter">
+        <input type="checkbox" id="isRenter" [(ngModel)]="userProfile.isRenter" name="isRenter" class="form-control-checkbox">
+        Es Arrendatario
+      </label>
     </div>
     <div class="form-group">
       <label for="imageId">ID de Imagen:</label>
@@ -33,6 +37,6 @@
       <label for="profilePicture">Foto de perfil:</label>
       <input type="file" id="profilePicture" (change)="onFileSelected($event)" class="form-control">
     </div>
-    <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
+    <button type="submit" class="btn-primary">Actualizar Perfil</button>
   </form>
 </div>
