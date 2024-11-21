@@ -13,34 +13,26 @@ spec:
       labels:
         app: arrienda-frontend
     spec:
+      automountServiceAccountToken: false
       imagePullSecrets:
         - name: github-secret
       containers:
       - name: arrienda-frontend
-        image: localhost:5000/arrienda_tu_finca_frontend:latest
+        image: elczar/arrienda_tu_finca_frontend:alpha2.0
         ports:
         - containerPort: 4200
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "100m"
+            cpu: "250m"
+            memory: "1Gi"
+            ephemeral-storage: "1Gi"
           limits:
-            memory: "128Mi"
-            cpu: "200m"
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 10
-          periodSeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 15
-          periodSeconds: 20
+            cpu: "500m"
+            memory: "2Gi"
+            ephemeral-storage: "2Gi"
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -50,7 +42,6 @@ spec:
   selector:
     app: arrienda-frontend
   ports:
-    - protocol: TCP
-      port: 4200
-      targetPort: 4200
-  type: ClusterIP
+  - protocol: TCP
+    port: 4200
+    targetPort: 4200

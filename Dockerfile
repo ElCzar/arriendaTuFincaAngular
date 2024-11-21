@@ -1,11 +1,21 @@
-FROM node:22.10-alpine
+FROM node:18-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . /usr/src/app
+# Copy package files
+COPY package*.json ./
 
+# Install dependencies
 RUN npm install -g @angular/cli
-
 RUN npm install
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+# Copy project files
+COPY . .
+
+# Make entry point executable
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 4200
+
+ENTRYPOINT ["docker-entrypoint.sh"]
