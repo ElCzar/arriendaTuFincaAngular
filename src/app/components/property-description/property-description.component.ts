@@ -4,35 +4,14 @@ import { PropertyService } from '../../services/property.service';
 import { CommentsComponent } from "../comments/comments.component";
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
-interface Property {
-  id: number;
-  name: string;
-  description: string;
-  municipality: string;
-  department: string;
-  typeOfEntrance: string;
-  address: string;
-  link: string;
-  isAvailable: boolean;
-  pricePerNight: number;
-  amountOfRooms: number;
-  amountOfBathrooms: number;
-  amountOfResidents: number;
-  isPetFriendly: boolean;
-  hasPool: boolean;
-  hasGril: boolean;
-  ownerEmail: string;
-  imageIds: string;
-  rating: number;
-}
+import { Property } from '../../models/property';
 
 @Component({
   selector: 'app-property-description',
   templateUrl: './property-description.component.html',
   styleUrls: ['./property-description.component.css'],
   standalone: true,
-  imports: [ CommentsComponent, FormsModule, CommonModule],
+  imports: [CommentsComponent, FormsModule, CommonModule],
 })
 export class PropertyDescriptionComponent implements OnInit {
   property: Property | undefined;

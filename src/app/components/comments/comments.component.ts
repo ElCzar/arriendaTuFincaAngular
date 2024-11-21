@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { CommentsService, CommentDTO } from '../../services/comments.service';
+import { CommentsService } from '../../services/comments.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { CommentDTO } from '../../models/comment.dto';
 
 @Component({
   standalone: true,
@@ -79,9 +80,9 @@ export class CommentsComponent implements OnInit {
 
     // Crear el comentario con el formato esperado por el backend
     const comment: CommentDTO = {
-      content: this.newComment,   // Cambiar a "content"
-      rating: this.newRating,     // Calificación
-      authorEmail: this.email,    // Cambiar a "authorEmail"
+      content: this.newComment,
+      rating: this.newRating,
+      authorEmail: this.email,
       user: this.user,
       requestId: this.requestId,
       propertyId: this.propertyId

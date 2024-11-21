@@ -1,15 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface CommentDTO {
-  user: string;        // Usuario que hizo el comentario
-  content: string;        // Texto del comentario (cambiar a "content" en el payload)
-  requestId: number;   // ID de la solicitud asociada
-  authorEmail: string;       // Email del autor del comentario (cambiar a "authorEmail" en el payload)
-  propertyId: number;  // ID de la propiedad
-  rating: number;      // Calificación del comentario
-}
+import { CommentDTO } from '../models/comment.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -37,27 +29,27 @@ export class CommentsService {
   // Agregar una reseña al anfitrión
   addHostReview(requestId: number, comment: CommentDTO): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/review-host/${requestId}`, {
-      content: comment.content,          // Enviar como "content"
-      rating: comment.rating,         // Calificación
-      authorEmail: comment.authorEmail     // Email del autor
+      content: comment.content,
+      rating: comment.rating,
+      authorEmail: comment.authorEmail
     });
   }
 
   // Agregar una reseña al arrendatario
   addRenterReview(requestId: number, comment: CommentDTO): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/review-renter/${requestId}`, {
-      content: comment.content,          // Enviar como "content"
-      rating: comment.rating,         // Calificación
-      authorEmail: comment.authorEmail     // Email del autor
+      content: comment.content,
+      rating: comment.rating,
+      authorEmail: comment.authorEmail
     });
   }
 
   // Agregar una reseña a una propiedad
   addPropertyReview(requestId: number, comment: CommentDTO): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/review-property/${requestId}`, {
-      content: comment.content,          // Enviar como "content"
-      rating: comment.rating,         // Calificación
-      authorEmail: comment.authorEmail     // Email del autor
+      content: comment.content,
+      rating: comment.rating,
+      authorEmail: comment.authorEmail
     });
   }
 }
