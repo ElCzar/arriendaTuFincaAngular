@@ -55,6 +55,7 @@ export class SolicitudesComponent implements OnInit {
       solicitud.approved = true;
       solicitud.rejected = false;
       solicitud.canceled = false;
+      solicitud.completed = true; // Asegúrate de que el estado completed se actualice
     });
   }
 
@@ -62,10 +63,10 @@ export class SolicitudesComponent implements OnInit {
     this.rentalRequestService.cancelarSolicitud(solicitud.id).subscribe(() => {
       solicitud.rejected = true;
       solicitud.approved = false;
-      solicitud.canceled = false;
+      solicitud.canceled = true; // Asegúrate de que el estado canceled se actualice
+      solicitud.completed = true; // Asegúrate de que el estado completed se actualice
     });
   }
-
 
   mostrarBotonAceptarCancelar(solicitud: Solicitud): boolean {
     return !solicitud.approved && !solicitud.rejected && !solicitud.canceled;

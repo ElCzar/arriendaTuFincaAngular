@@ -20,10 +20,10 @@ export class RentalRequestService {
   }
 
   aceptarSolicitud(solicitudId: number): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/${solicitudId}/aceptar`, {});
+    return this.http.put<void>(`${this.apiUrl}/approve/${solicitudId}`, {});
   }
 
-  cancelarSolicitud(id: number): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/${id}/cancelar`, {});
+  cancelarSolicitud(solicitudId: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/reject/${solicitudId}`, {});
   }
 }
