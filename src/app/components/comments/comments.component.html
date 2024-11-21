@@ -1,11 +1,19 @@
 <!-- comments.component.html -->
 <div class="comments-section">
   <h2>Comentarios</h2>
-  <div *ngFor="let comment of comments">
-    <p><strong>{{ comment.user }}</strong>: {{ comment.text }}</p>
+
+  <div *ngIf="comments.length === 0">No hay comentarios para esta propiedad.</div>
+  <div *ngFor="let comment of comments" class="comment">
+    <p>{{ comment.content }}</p>
+    <p><strong>Autor:</strong> {{ comment.user }}</p>
+    <p><strong>Calificación:</strong> {{ comment.rating }}</p>
   </div>
+
   <div class="add-comment">
-    <input [(ngModel)]="newComment" placeholder="Añadir un comentario..." />
+    <h3>Agregar Comentario</h3>
+    <textarea [(ngModel)]="newComment" placeholder="Escribe tu comentario..."></textarea>
+    <input type="number" [(ngModel)]="newRating" placeholder="Calificación (1-5)" min="1" max="5">
     <button (click)="addComment()">Enviar</button>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
 </div>

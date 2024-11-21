@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { CommentsService, CommentDTO } from '../../services/comments.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CommentsService } from '../../services/comments.service';
-
-interface CommentDTO {
-  user: string;
-  text: string;
-}
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -16,51 +14,90 @@ interface CommentDTO {
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
+  @Input() propertyId!: number;
+  @Input() requestId!: number;
   comments: CommentDTO[] = [];
   newComment = '';
-  requestId = 1; // Cambia esto según sea necesario
-  currentUser = 'CurrentUser'; // Obtén el nombre del usuario que hizo login
-  email = 'user@example.com'; // Cambia esto según sea necesario
-  propertyId = 1; // Cambia esto según sea necesario
+  newRating: number | null = null;
+  user!: string;
+  email!: string;
+  errorMessage: string | null = null;
 
-  constructor(private commentsService: CommentsService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private commentsService: CommentsService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit() {
-    this.loadPropertyComments(); // Cambia esto según el tipo de comentarios que deseas cargar
-  }
-
-  loadRenterComments() {
-    this.commentsService.getRenterComments(this.email).subscribe(comments => {
-      this.comments = comments;
-    });
-  }
-
-  loadHostComments() {
-    this.commentsService.getHostComments(this.email).subscribe(comments => {
-      this.comments = comments;
-    });
-  }
-
-  loadPropertyComments() {
-    this.commentsService.getPropertyComments(this.propertyId).subscribe(comments => {
-      this.comments = comments;
-    });
-  }
-
-  addComment() {
-    if (this.newComment.trim()) {
-      const comment: CommentDTO = { user: this.currentUser, text: this.newComment.trim() };
-      this.commentsService.addPropertyReview(this.requestId, comment).subscribe(
-        () => {
-          this.comments.push(comment);
-          this.newComment = '';
-        },
-        (error) => {
-          console.error('Error al agregar el comentario', error);
+  ngOnInit(): void {
+    // Obtener información del usuario autenticado
+    this.authService.getUserId().subscribe({
+      next: (userId) => {
+        if (userId !== -1) {
+          this.userService.getUserProfile(userId).subscribe({
+            next: (userProfile) => {
+              this.user = userProfile.name;
+              this.email = userProfile.email;
+            },
+            error: (err) => {
+              console.error('Error al obtener el perfil del usuario:', err);
+            }
+          });
         }
-      );
+      },
+      error: (err) => {
+        console.error('Error al obtener el ID del usuario:', err);
+      }
+    });
+
+    // Cargar comentarios de la propiedad
+    if (this.propertyId) {
+      this.commentsService.getPropertyComments(this.propertyId).subscribe({
+        next: (comments) => {
+          this.comments = comments;
+        },
+        error: (err) => {
+          console.error('Error al cargar los comentarios:', err);
+        }
+      });
     } else {
-      console.error('El comentario no puede estar vacío.');
+      console.error('El propertyId no está definido.');
     }
+  }
+
+  // Agregar un nuevo comentario
+  addComment(): void {
+    if (!this.newComment.trim()) {
+      this.errorMessage = 'El comentario no puede estar vacío.';
+      return;
+    }
+    if (this.newRating === null || this.newRating < 1 || this.newRating > 5) {
+      this.errorMessage = 'La calificación debe estar entre 1 y 5.';
+      return;
+    }
+
+    // Crear el comentario con el formato esperado por el backend
+    const comment: CommentDTO = {
+      content: this.newComment,   // Cambiar a "content"
+      rating: this.newRating,     // Calificación
+      authorEmail: this.email,    // Cambiar a "authorEmail"
+      user: this.user,
+      requestId: this.requestId,
+      propertyId: this.propertyId
+    };
+
+    this.commentsService.addPropertyReview(this.requestId, comment).subscribe({
+      next: () => {
+        this.comments.push({ ...comment, user: this.user }); // Agregar al listado
+        this.newComment = '';
+        this.newRating = null;
+        this.errorMessage = null;
+      },
+      error: (err) => {
+        this.errorMessage = 'Error al agregar el comentario.';
+        console.error('Error al agregar el comentario:', err);
+      }
+    });
   }
 }

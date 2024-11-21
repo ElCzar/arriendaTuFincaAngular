@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyService } from '../../services/property.service';
-import { HearderAuthComponent } from "../hearder-auth/hearder-auth.component";
-import { FooterComponent } from "../footer/footer.component";
 import { CommentsComponent } from "../comments/comments.component";
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 interface Property {
   id: number;
@@ -33,10 +32,11 @@ interface Property {
   templateUrl: './property-description.component.html',
   styleUrls: ['./property-description.component.css'],
   standalone: true,
-  imports: [HearderAuthComponent, FooterComponent, CommentsComponent, FormsModule],
+  imports: [ CommentsComponent, FormsModule, CommonModule],
 })
 export class PropertyDescriptionComponent implements OnInit {
   property: Property | undefined;
+  requestId!: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +46,7 @@ export class PropertyDescriptionComponent implements OnInit {
 
   ngOnInit(): void {
     const propertyId = this.route.snapshot.paramMap.get('id');
+    this.requestId = +this.route.snapshot.paramMap.get('requestId')!;
     if (propertyId) {
       this.propertyService.getPropertyById(propertyId.toString()).subscribe(
         (data: Property) => {

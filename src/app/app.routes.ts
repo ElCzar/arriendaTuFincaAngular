@@ -12,6 +12,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { PropertyDescriptionComponent } from './components/property-description/property-description.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { RequestComponent } from './components/request/request.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,8 +26,7 @@ export const routes: Routes = [
   { path: 'solicitudes', component: SolicitudesComponent },
   { path: 'pay', component: PayComponent },
   { path: 'ver-propiedad/:id', component: PropertyDescriptionComponent },
-  {path: 'request', component: RequestComponent},
-  {path: 'cambiar-contrasena', component: ChangePasswordComponent}
-
-  
+  { path: 'request', component: RequestComponent },
+  { path: 'cambiar-contrasena', component: ChangePasswordComponent },
+  { path: 'property/:propertyId/request/:requestId/comments', component: CommentsComponent }
 ];
