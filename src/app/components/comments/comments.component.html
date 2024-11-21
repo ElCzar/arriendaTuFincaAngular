@@ -1,11 +1,19 @@
-<!-- comments.component.html -->
-<div class="comments-section">
-  <h2>Comentarios</h2>
-  <div *ngFor="let comment of comments">
-    <p><strong>{{ comment.user }}</strong>: {{ comment.text }}</p>
+<form (ngSubmit)="submitComment()">
+  <div>
+    <label for="content">Comentario</label>
+    <textarea id="content" [(ngModel)]="comment.content" name="content" required></textarea>
   </div>
-  <div class="add-comment">
-    <input [(ngModel)]="newComment" placeholder="Añadir un comentario..." />
-    <button (click)="addComment()">Enviar</button>
+  <div>
+    <label for="rating">Calificación</label>
+    <input id="rating" type="number" [(ngModel)]="comment.rating" name="rating" min="1" max="5" required />
+  </div>
+  <button type="submit">Enviar Comentario</button>
+</form>
+
+<div *ngIf="comments.length > 0">
+  <h3>Comentarios</h3>
+  <div *ngFor="let comment of comments">
+    <p>{{ comment.authorEmail }}: {{ comment.content }} ({{ comment.rating }}/5)</p>
   </div>
 </div>
+

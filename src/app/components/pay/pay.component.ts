@@ -96,7 +96,7 @@ export class PayComponent implements OnInit {
           if (error.status === 200) {
             // Si el estado es 200, considera la respuesta como exitosa
             alert('Pago exitoso, ten una linda estadía');
-            this.router.navigate(['/mis-solicitudes']);
+            this.router.navigate(['/mis-solicitudes/:id']);
           } else {
             console.error('Error al realizar el pago', error);
             alert('Error al realizar el pago');
