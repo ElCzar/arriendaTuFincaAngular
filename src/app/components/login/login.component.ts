@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Login } from '../../models/login.model';
+import { Token } from '../../models/token.model';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +14,27 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
-  });
+  loginForm: FormGroup;
 
-  constructor(private readonly router: Router, private authService: AuthService) {}
+  constructor(private readonly router: Router, private authService: AuthService) {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    });
+  }
 
-  onSubmit() {
+  onLogin() {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe(
-        (response) => {
-          console.log('Usuario autenticado exitosamente', response);
-          this.router.navigate(['/home2']); // Redirige a la página del dashboard después de iniciar sesión
+      const login: Login = this.loginForm.value;
+      this.authService.login(login).subscribe(
+        (token: Token) => {
+          console.log('Login successful', token);
+          console.log('Full token:', JSON.stringify(token)); // Imprimir el token completo en la consola
+          // Redirigir al usuario a la página de inicio o a otra página
+          this.router.navigate(['/home2']);
         },
         (error) => {
-          console.error('Error al iniciar sesión', error);
-          alert('Hubo un error al iniciar sesión. Por favor, inténtalo de nuevo.');
+          console.error('Login failed', error);
         }
       );
     } else {

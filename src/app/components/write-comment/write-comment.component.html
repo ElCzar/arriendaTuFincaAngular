@@ -1,0 +1,19 @@
+<div class="write-comment">
+  <div *ngIf="!canComment">
+    <p class="warning-message">You must make a reservation first to leave a comment.</p>
+  </div>
+  
+  <div *ngIf="canComment && commentForm">
+    <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
+      <div>
+        <label for="content">Comment:</label>
+        <textarea id="content" formControlName="content"></textarea>
+      </div>
+      <div>
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" formControlName="rating" min="1" max="5">
+      </div>
+      <button type="submit" [disabled]="commentForm.invalid">Submit</button>
+    </form>
+  </div>
+</div>

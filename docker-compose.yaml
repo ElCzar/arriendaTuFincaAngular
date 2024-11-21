@@ -1,6 +1,6 @@
 services:
     arrienda-api:
-        image: elczar/arrienda_tu_finca:2.4
+        image: elczar/arrienda_tu_finca:3.0
         ports:
             - 8080:8080
         depends_on:

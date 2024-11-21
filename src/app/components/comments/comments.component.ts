@@ -1,43 +1,37 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RentalRequestService } from '../../services/rental-request.service';
-import { Comment } from '../../models/comment.model';
 import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
+import { Comment } from '../../models/comment.model';
+import { Solicitud } from '../../models/solicitud.model';
 
 @Component({
-  standalone: true,
-  imports: [FormsModule, CommonModule],
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.css']
+  styleUrls: ['./comments.component.css'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class CommentsComponent implements OnInit {
   @Input() propertyId!: number;
-  @Input() requestId!: number;
-  comment: Comment = { content: '', rating: 0, authorEmail: '' };
   comments: Comment[] = [];
-  userEmail: string = '';
+  requestId!: number;
+  userEmail!: string;
 
   constructor(
     private rentalRequestService: RentalRequestService,
-    private authService: AuthService,
-    private userService: UserService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.getUserEmail();
-    this.loadComments();
-  }
-
-  getUserEmail() {
-    this.authService.getUserId().subscribe((userId) => {
+    this.authService.getUserId().subscribe(userId => {
       if (userId !== -1) {
-        this.userService.getUserInfo(userId).subscribe((user) => {
-          this.userEmail = user.email;
-          this.comment.authorEmail = this.userEmail; // Assign userEmail to authorEmail
-        });
+        this.userEmail = this.authService.getUserEmail(); // Asume que tienes un método para obtener el email del usuario
+        this.loadRequestId(this.propertyId);
+        this.loadComments();
+      } else {
+        console.error('User not authenticated');
       }
     });
   }
@@ -45,10 +39,7 @@ export class CommentsComponent implements OnInit {
   loadComments(): void {
     this.rentalRequestService.getPropertyComments(this.propertyId).subscribe(
       (comments: Comment[]) => {
-        this.comments = comments.map(comment => ({
-          ...comment,
-          authorEmail: comment.authorEmail || 'Anónimo' // Ensure authorEmail is handled correctly
-        }));
+        this.comments = comments;
       },
       (error) => {
         console.error('Error loading comments', error);
@@ -56,30 +47,37 @@ export class CommentsComponent implements OnInit {
     );
   }
 
-  submitComment(): void {
-    if (!this.userEmail) {
-      console.warn('Warning: userEmail is empty!');
-      return;
-    }
-
-    const commentToSend: Comment = {
-      content: this.comment.content,
-      rating: this.comment.rating,
-      authorEmail: this.userEmail
-    };
-
-    console.log('Submitting comment:', commentToSend);
-
-    this.rentalRequestService.reviewProperty(this.requestId, commentToSend).subscribe({
-      next: () => {
-        console.log('Comment saved successfully');
-        this.comments.push({ ...commentToSend });
-        this.comment = { content: '', rating: 0, authorEmail: this.userEmail };
+  loadRequestId(propertyId: number): void {
+    this.rentalRequestService.getSolicitudesByProperty(propertyId).subscribe(
+      (solicitudes: Solicitud[]) => {
+        console.log('Solicitudes:', solicitudes); // Debugging
+        const solicitud = solicitudes.find(s => s.propertyId === propertyId && s.requesterEmail === this.userEmail);
+        if (solicitud) {
+          this.requestId = solicitud.id;
+          console.log('Request ID found:', this.requestId); // Debugging
+        } else {
+          console.error('Solicitud de arriendo no encontrada');
+        }
       },
-      error: (error) => {
-        console.error('Submission error:', error);
-        alert('Error submitting comment');
+      (error) => {
+        console.error('Error fetching solicitudes', error);
       }
-    });
+    );
+  }
+
+  addComment(commentText: string, rating: number): void {
+    if (this.requestId) {
+      const comment: Comment = { content: commentText, rating, authorEmail: this.userEmail };
+      this.rentalRequestService.reviewProperty(this.requestId, comment).subscribe(
+        () => {
+          this.loadComments();
+        },
+        (error) => {
+          console.error('Error adding comment', error);
+        }
+      );
+    } else {
+      console.error('Request ID is missing');
+    }
   }
 }

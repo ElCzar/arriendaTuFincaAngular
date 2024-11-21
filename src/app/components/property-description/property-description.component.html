@@ -12,10 +12,16 @@
       <li><strong>Pet Friendly:</strong> {{ property?.isPetFriendly ? 'Yes' : 'No' }}</li>
       <li><strong>Pool:</strong> {{ property?.hasPool ? 'Yes' : 'No' }}</li>
       <li><strong>Grill:</strong> {{ property.hasGrill ? 'Yes' : 'No' }}</li>
-      <li><strong>Owner Email:</strong> {{ property?.ownerEmail }}</li>
-      <li><strong>Rating:</strong> {{ property?.rating }}</li>
+      <li><strong>Owner Email:</strong> {{ property.ownerEmail }}</li>
+      <li><strong>Rating:</strong> {{ property.rating }}</li>
     </ul>
     <button (click)="makeReservation()" class="reserve-button">Hacer Reserva</button>
-    <app-comments *ngIf="property?.id !== undefined" [propertyId]="property!.id" [requestId]="requestId ?? 0"></app-comments>
+    <app-comments *ngIf="property?.id" [propertyId]="property.id"></app-comments>
+    <app-write-comment 
+        *ngIf="property?.id && userEmail" 
+        [propertyId]="property.id" 
+        [requestId]="requestId || 0" 
+        [userEmail]="userEmail">
+    </app-write-comment>
   </div>
 </div>

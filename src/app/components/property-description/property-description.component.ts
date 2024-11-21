@@ -8,13 +8,14 @@ import { RentalRequestService } from '../../services/rental-request.service';
 import { Solicitud } from '../../models/solicitud.model';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { WriteCommentComponent } from '../write-comment/write-comment.component';
 
 @Component({
   selector: 'app-property-description',
   templateUrl: './property-description.component.html',
   styleUrls: ['./property-description.component.css'],
   standalone: true,
-  imports: [CommonModule, CommentsComponent]
+  imports: [CommonModule, WriteCommentComponent, CommentsComponent]
 })
 export class PropertyDescriptionComponent implements OnInit {
   property: Property | undefined;
@@ -39,6 +40,7 @@ export class PropertyDescriptionComponent implements OnInit {
       if (userId !== -1) {
         this.userService.getUserInfo(userId).subscribe((user) => {
           this.userEmail = user.email;
+          console.log('User email:', this.userEmail); // Debugging
           this.loadPropertyAndRequestId();
         });
       }
@@ -51,6 +53,7 @@ export class PropertyDescriptionComponent implements OnInit {
       this.propertyService.getPropertyById(propertyId.toString()).subscribe(
         (data: Property) => {
           this.property = data;
+          console.log('Property loaded:', this.property); // Debugging
           this.loadRequestId(propertyId);
         },
         (error) => {
@@ -61,17 +64,32 @@ export class PropertyDescriptionComponent implements OnInit {
   }
 
   loadRequestId(propertyId: string): void {
-    this.rentalRequestService.getSolicitudesByProperty(+propertyId).subscribe(
-      (solicitudes: Solicitud[]) => {
-        const solicitud = solicitudes.find(s => s.propertyId === +propertyId && s.requesterEmail === this.userEmail);
+    if (!this.userEmail) {
+      console.error('User email not found');
+      return;
+    }
+
+    this.rentalRequestService.getSolicitudesByProperty(+propertyId).subscribe({
+      next: (solicitudes: Solicitud[]) => {
+        console.log('Solicitudes:', solicitudes);
+        const solicitud = solicitudes.find(s => 
+          s.propertyId === +propertyId && 
+          s.requesterEmail === this.userEmail
+        );
+        
         if (solicitud) {
           this.requestId = solicitud.id;
+          console.log('Request ID found:', this.requestId);
+        } else {
+          console.log('No rental request found for this property and user');
+          this.requestId = undefined;
         }
       },
-      (error) => {
-        console.error('Error fetching solicitudes', error);
+      error: (error) => {
+        console.error('Error fetching solicitudes:', error);
+        this.requestId = undefined;
       }
-    );
+    });
   }
 
   makeReservation(): void {
