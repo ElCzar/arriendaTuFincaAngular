@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HearderAuthComponent } from '../hearder-auth/hearder-auth.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RentalRequestService } from '../../services/rental-request.service';
@@ -13,13 +13,15 @@ import { RentalRequestService } from '../../services/rental-request.service';
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent {
+export class RequestComponent implements OnInit {
   requestForm: FormGroup;
+  propertyId: number | undefined;
 
   constructor(
     private readonly fb: FormBuilder,
     private rentalRequestService: RentalRequestService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.requestForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -29,8 +31,12 @@ export class RequestComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.propertyId = +this.route.snapshot.paramMap.get('propertyId')!;
+  }
+
   onSubmit() {
-    if (this.requestForm.valid) {
+    if (this.requestForm.valid && this.propertyId) {
       const rentalRequest = {
         requesterEmail: this.requestForm.value.email,
         arrivalDate: this.requestForm.value.fechaInicio,
@@ -38,9 +44,7 @@ export class RequestComponent {
         amountOfResidents: this.requestForm.value.numeroResidentes
       };
 
-      const propertyId = 1; // Reemplaza esto con el ID de la propiedad correspondiente
-
-      this.rentalRequestService.createRequest(propertyId, rentalRequest).subscribe(
+      this.rentalRequestService.createRequest(this.propertyId, rentalRequest).subscribe(
         (response) => {
           alert(response.body || 'Solicitud de arriendo enviada con éxito');
           this.router.navigate(['/home2']);

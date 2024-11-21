@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,9 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/create`, user);
   }
 
+  getUserInfo(userId: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/info/${userId}`);
+  }
   // Obtener el perfil del usuario
   getUserProfile(userId: number): Observable<any> {
     if (!userId || isNaN(userId)) {

@@ -1,25 +1,25 @@
 
 <!-- property-description.component.html -->
 <div class="property-description">
-    <h1>{{ property?.name }}</h1>
-    <img [src]="property?.imageIds" alt="{{ property?.name }}" />
-    <p>{{ property?.description }}</p>
-    <ul>
-      <li><strong>Municipality:</strong> {{ property?.municipality }}</li>
-      <li><strong>Department:</strong> {{ property?.department }}</li>
-      <li><strong>Type of Entrance:</strong> {{ property?.typeOfEntrance }}</li>
-      <li><strong>Address:</strong> {{ property?.address }}</li>
-      <li><strong>Price per Night:</strong> {{ property?.pricePerNight }}</li>
-      <li><strong>Rooms:</strong> {{ property?.amountOfRooms }}</li>
-      <li><strong>Bathrooms:</strong> {{ property?.amountOfBathrooms }}</li>
-      <li><strong>Residents:</strong> {{ property?.amountOfResidents }}</li>
-      <li><strong>Pet Friendly:</strong> {{ property?.isPetFriendly ? 'Yes' : 'No' }}</li>
-      <li><strong>Pool:</strong> {{ property?.hasPool ? 'Yes' : 'No' }}</li>
-      <li><strong>Grill:</strong> {{ property?.hasGril ? 'Yes' : 'No' }}</li>
-      <li><strong>Owner Email:</strong> {{ property?.ownerEmail }}</li>
-      <li><strong>Rating:</strong> {{ property?.rating }}</li>
-    </ul>
-    <button (click)="makeReservation()" class="reserve-button">Hacer Reserva</button>
-    <app-comments></app-comments>
-  
-  </div>
+  <h1>{{ property?.name }}</h1>
+  <img [src]="property?.imageIds" alt="{{ property?.name }}" />
+  <p>{{ property?.description }}</p>
+  <ul>
+    <li><strong>Municipality:</strong> {{ property?.municipality }}</li>
+    <li><strong>Department:</strong> {{ property?.department }}</li>
+    <li><strong>Type of Entrance:</strong> {{ property?.typeOfEntrance }}</li>
+    <li><strong>Address:</strong> {{ property?.address }}</li>
+    <li><strong>Price per Night:</strong> {{ property?.pricePerNight }}</li>
+    <li><strong>Rooms:</strong> {{ property?.amountOfRooms }}</li>
+    <li><strong>Bathrooms:</strong> {{ property?.amountOfBathrooms }}</li>
+    <li><strong>Residents:</strong> {{ property?.amountOfResidents }}</li>
+    <li><strong>Pet Friendly:</strong> {{ property?.isPetFriendly ? 'Yes' : 'No' }}</li>
+    <li><strong>Pool:</strong> {{ property?.hasPool ? 'Yes' : 'No' }}</li>
+    <li><strong>Grill:</strong> {{ property?.hasGril ? 'Yes' : 'No' }}</li>
+    <li><strong>Owner Email:</strong> {{ property?.ownerEmail }}</li>
+    <li><strong>Rating:</strong> {{ property?.rating }}</li>
+  </ul>
+  <button (click)="makeReservation()" class="reserve-button">Hacer Reserva</button>
+  <app-comments></app-comments>
+
+</div>

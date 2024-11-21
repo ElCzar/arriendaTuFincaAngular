@@ -44,4 +44,6 @@ export class AuthService {
     this.userIdSubject.next(-1);
     this.authStatus.next(false); // Actualiza el estado de autenticación
   }
+
+
 }

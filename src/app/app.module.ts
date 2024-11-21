@@ -19,6 +19,7 @@ import { CommentsComponent } from './components/comments/comments.component';
   declarations: [
     //AppComponent,
     EditPropertyComponent,
+    SolicitudesComponent,
     
   ],
   imports: [
@@ -29,7 +30,6 @@ import { CommentsComponent } from './components/comments/comments.component';
     RouterModule.forRoot(routes),
     PropertyFormComponent,
     SearchBarComponent,
-    SolicitudesComponent,
     UserDetailsComponent,
     HearderAuthComponent,
     CommentsComponent,
