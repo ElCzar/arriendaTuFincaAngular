@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CommentsService } from '../../services/comments.service';
-
-interface CommentDTO {
-  user: string;
-  text: string;
-}
+import { RentalRequestService } from '../../services/rental-request.service';
+import { Comment } from '../../models/comment.model';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   standalone: true,
@@ -16,51 +14,72 @@ interface CommentDTO {
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-  comments: CommentDTO[] = [];
-  newComment = '';
-  requestId = 1; // Cambia esto según sea necesario
-  currentUser = 'CurrentUser'; // Obtén el nombre del usuario que hizo login
-  email = 'user@example.com'; // Cambia esto según sea necesario
-  propertyId = 1; // Cambia esto según sea necesario
+  @Input() propertyId!: number;
+  @Input() requestId!: number;
+  comment: Comment = { content: '', rating: 0, authorEmail: '' };
+  comments: Comment[] = [];
+  userEmail: string = '';
 
-  constructor(private commentsService: CommentsService) {}
+  constructor(
+    private rentalRequestService: RentalRequestService,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
-  ngOnInit() {
-    this.loadPropertyComments(); // Cambia esto según el tipo de comentarios que deseas cargar
+  ngOnInit(): void {
+    this.getUserEmail();
+    this.loadComments();
   }
 
-  loadRenterComments() {
-    this.commentsService.getRenterComments(this.email).subscribe(comments => {
-      this.comments = comments;
+  getUserEmail() {
+    this.authService.getUserId().subscribe((userId) => {
+      if (userId !== -1) {
+        this.userService.getUserInfo(userId).subscribe((user) => {
+          this.userEmail = user.email;
+          this.comment.authorEmail = this.userEmail; // Assign userEmail to authorEmail
+        });
+      }
     });
   }
 
-  loadHostComments() {
-    this.commentsService.getHostComments(this.email).subscribe(comments => {
-      this.comments = comments;
-    });
+  loadComments(): void {
+    this.rentalRequestService.getPropertyComments(this.propertyId).subscribe(
+      (comments: Comment[]) => {
+        this.comments = comments.map(comment => ({
+          ...comment,
+          authorEmail: comment.authorEmail || 'Anónimo' // Ensure authorEmail is handled correctly
+        }));
+      },
+      (error) => {
+        console.error('Error loading comments', error);
+      }
+    );
   }
 
-  loadPropertyComments() {
-    this.commentsService.getPropertyComments(this.propertyId).subscribe(comments => {
-      this.comments = comments;
-    });
-  }
-
-  addComment() {
-    if (this.newComment.trim()) {
-      const comment: CommentDTO = { user: this.currentUser, text: this.newComment.trim() };
-      this.commentsService.addPropertyReview(this.requestId, comment).subscribe(
-        () => {
-          this.comments.push(comment);
-          this.newComment = '';
-        },
-        (error) => {
-          console.error('Error al agregar el comentario', error);
-        }
-      );
-    } else {
-      console.error('El comentario no puede estar vacío.');
+  submitComment(): void {
+    if (!this.userEmail) {
+      console.warn('Warning: userEmail is empty!');
+      return;
     }
+
+    const commentToSend: Comment = {
+      content: this.comment.content,
+      rating: this.comment.rating,
+      authorEmail: this.userEmail
+    };
+
+    console.log('Submitting comment:', commentToSend);
+
+    this.rentalRequestService.reviewProperty(this.requestId, commentToSend).subscribe({
+      next: () => {
+        console.log('Comment saved successfully');
+        this.comments.push({ ...commentToSend });
+        this.comment = { content: '', rating: 0, authorEmail: this.userEmail };
+      },
+      error: (error) => {
+        console.error('Submission error:', error);
+        alert('Error submitting comment');
+      }
+    });
   }
 }
