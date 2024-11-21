@@ -97,4 +97,8 @@ export class HearderAuthComponent implements OnInit {
   goToMyProperties() {
     this.router.navigate(['/mis-propiedades']);
   }
+
+  goToMyRequests() {
+    this.router.navigate(['/mis-solicitudes', this.userId]);
+  }
 }

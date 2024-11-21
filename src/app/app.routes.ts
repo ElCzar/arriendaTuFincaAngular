@@ -13,6 +13,7 @@ import { PropertyDescriptionComponent } from './components/property-description/
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { RequestComponent } from './components/request/request.component';
 import { MyPropertiesComponent } from './components/myproperties/myproperties.component';
+import { MisSolicitudesComponent } from './components/mis-solicitudes/mis-solicitudes.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,7 +29,7 @@ export const routes: Routes = [
   { path: 'ver-propiedad/:id', component: PropertyDescriptionComponent },
   { path: 'request', component: RequestComponent },
   {path: 'mis-propiedades', component: MyPropertiesComponent},
-
+  {path: 'mis-solicitudes/:id', component: MisSolicitudesComponent},
   {path: 'cambiar-contrasena', component: ChangePasswordComponent}
 
   

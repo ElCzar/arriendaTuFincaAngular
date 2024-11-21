@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Solicitud } from '../models/solicitud.model';
+import { Property } from '../models/property.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +27,19 @@ export class RentalRequestService {
   cancelarSolicitud(solicitudId: number): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/reject/${solicitudId}`, {});
   }
+
+  getSolicitudesByUser(email: string): Observable<Solicitud[]> {
+    return this.http.get<Solicitud[]>(`${this.apiUrl}/renter?email=${encodeURIComponent(email)}`);
+  }
+
+  payRequest(requestId: number, paymentDetails: { complete: boolean, paid: boolean, amount: number, banco: string, numeroCuenta: string }): Observable<string> {
+    return this.http.put<string>(`${this.apiUrl}/pay/${requestId}`, paymentDetails);
+  }
+
+  getPropertyById(propertyId: string): Observable<Property> {
+    return this.http.get<Property>(`${this.apiUrl}/property/${propertyId}`);
+  }
 }
+
+
+
