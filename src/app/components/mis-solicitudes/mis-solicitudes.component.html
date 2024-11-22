@@ -1,0 +1,5 @@
+<div *ngFor="let solicitud of solicitudes">
+    <p>Solicitud ID: {{ solicitud.id }}</p>
+    <p>Estado: {{ getEstado(solicitud) }}</p>
+    <button *ngIf="mostrarBotonPagar(solicitud)" (click)="pagarSolicitud(solicitud)">Pagar</button>
+  </div>

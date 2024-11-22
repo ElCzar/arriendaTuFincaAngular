@@ -1,0 +1,55 @@
+.user-details-container {
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Noto Serif HK', serif;
+    color: #333;
+    margin: 20px auto;
+  }
+  
+  h1, h2 {
+    color: #9F6D65;
+    font-family: 'Noto Serif HK', serif;
+  }
+  
+  .user-info p, .renter-info p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .host-properties {
+    margin-top: 30px;
+  }
+  
+  .property-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .property-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+  
+  .property-list li h3 {
+    margin-top: 0;
+    color: #9AB588;
+  }
+  
+  .property-list li p {
+    margin: 5px 0;
+  }
+  
+  .renter-info {
+    margin-top: 30px;
+  }
+  
+  .renter-info p {
+    font-size: 18px;
+  }
+  

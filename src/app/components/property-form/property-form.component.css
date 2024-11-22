@@ -1,78 +1,63 @@
-/* Tipografías */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+HK:wght@400;700&display=swap');
-
-/* Estilos generales */
-body {
-  background-color: #ffffff; /* Fondo blanco */
-  font-family: 'Noto Serif HK', serif;
-  color: #000000; /* Texto negro */
-}
-
-/* Contenedor del formulario */
 .property-form-container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
-  background-color: #f8f8f8; /* Fondo neutro */
+  background-color: #fff;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
 }
 
-/* Estilos para el encabezado */
 .property-form-container h1 {
   text-align: center;
-  color: #9F6D65; /* Color primario */
-  font-size: 2.5rem; /* Tamaño de fuente de encabezados según el escalado */
   margin-bottom: 20px;
+  font-family: 'Noto Serif HK', serif; /* Añadido el estilo de título */
+  color: #9F6D65; /* Color primario */
+}
+
+.form-group {
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
+
+.form-control {
+  
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+  font-family: 'Noto Serif HK', serif; /* Estilo de fuente del cuerpo */
+}
+
+.form-control:focus {
+  border-color: #9F6D65; /* Color de borde cuando el campo está enfocado */
+  outline: none;
+  box-shadow: 0 0 5px rgba(159, 109, 101, 0.5); /* Añadir un resplandor sutil al campo */
+}
+
+.form-control-checkbox {
+  margin-right: 10px;
+}
+
+.btn-primary {
+  background-color: #9F6D65;
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%; /* Botón de tamaño completo */
   font-family: 'Noto Serif HK', serif;
 }
 
-/* Estilos para las etiquetas */
-.form-group label {
-  font-weight: bold;
-  color: #9F6D65; /* Color primario */
-  display: block;
-  margin-bottom: 10px;
+.btn-primary:hover {
+  background-color: #856359;
 }
 
-/* Estilos para los controles del formulario */
-.form-control {
-  width: 100%;
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #C3C8A8; /* Color secundario */
-  font-size: 1.2rem;
-  background-color: #ffffff;
-  color: #000000; /* Texto negro */
-  margin-bottom: 15px;
+.btn-primary:active {
+  background-color: #734f4a;
 }
 
-/* Estilo del botón */
-.btn {
-  width: 100%;
-  padding: 14px;
-  background-color: #9AB588; /* Color de acento */
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  font-size: 1.3rem;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #7a9b6c; /* Oscurecer un poco el color al hacer hover */
-}
-
-textarea.form-control {
-  resize: none;
-}
-
-input[type="file"].form-control {
-  border: none;
-  background-color: #eaeaea;
-}
-
-input[type="file"].form-control:hover {
-  background-color: #dcdcdc;
-}

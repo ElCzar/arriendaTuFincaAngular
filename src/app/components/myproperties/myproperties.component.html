@@ -1,0 +1,11 @@
+<div class="properties-container">
+  <h2>Mis Propiedades</h2>
+  <div *ngIf="properties.length === 0">
+    <p>No tienes propiedades registradas.</p>
+  </div>
+  <div *ngFor="let property of properties" class="property-card">
+    <h3>{{ property.name }}</h3>
+    <p>{{ property.description }}</p>
+    <button (click)="viewRequests(property.id)">Ver Solicitudes Pendientes</button>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+/* property-description.component.css */
+.property-description {
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.property-description h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.property-description img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.property-description p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.property-description ul {
+  list-style: none;
+  padding: 0;
+}
+
+.property-description li {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.reserve-button {
+  background-color: #9f6d65;
+  color: #fff;
+  font-size: 1em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.reserve-button:hover {
+  background-color: #7f4d45;
+}

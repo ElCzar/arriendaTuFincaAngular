@@ -23,7 +23,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
@@ -81,11 +82,14 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/property-form/property-form.component.css",
+              "src/property-form/property-edit.component.css"
             ],
             "scripts": []
           }
@@ -94,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": "8146d4ef-c67b-480b-bab1-2223c0d84629"
+    "analytics": "0e9b4145-b9e6-4a42-a573-487f7cb00592"
   }
 }

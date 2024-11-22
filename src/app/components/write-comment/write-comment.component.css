@@ -1,0 +1,33 @@
+.write-comment {
+  margin-top: 20px;
+}
+
+.write-comment form {
+  display: flex;
+  flex-direction: column;
+}
+
+.write-comment label {
+  margin-top: 10px;
+}
+
+.write-comment textarea,
+.write-comment input {
+  margin-top: 5px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.write-comment button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.write-comment button:disabled {
+  background-color: #cccccc;
+}

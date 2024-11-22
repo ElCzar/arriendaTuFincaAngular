@@ -1,12 +1,13 @@
 <div class="property-form-container">
   <h1>Crear Propiedad</h1>
-  <form (submit)="onSubmit($event)">
+  <form (ngSubmit)="onSubmit($event)">
     <!-- Nombre de la propiedad -->
     <div class="form-group">
       <label for="name">Nombre de la Propiedad:</label>
       <input
         type="text"
         id="name"
+        [(ngModel)]="propertyData.name"
         name="name"
         class="form-control"
         placeholder="Introduce el nombre de la propiedad"
@@ -19,6 +20,7 @@
       <label for="description">Descripción:</label>
       <textarea
         id="description"
+        [(ngModel)]="propertyData.description"
         name="description"
         class="form-control"
         rows="4"
@@ -33,6 +35,7 @@
       <input
         type="text"
         id="municipality"
+        [(ngModel)]="propertyData.municipality"
         name="municipality"
         class="form-control"
         placeholder="Introduce el municipio"
@@ -46,9 +49,24 @@
       <input
         type="text"
         id="department"
+        [(ngModel)]="propertyData.department"
         name="department"
         class="form-control"
         placeholder="Introduce el departamento"
+        required
+      />
+    </div>
+
+        <!-- Enlace de la propiedad -->
+    <div class="form-group">
+      <label for="link">Enlace de detalles de la propiedad:</label>
+      <input
+        type="text"
+        id="link"
+        [(ngModel)]="propertyData.link"
+        name="link"
+        class="form-control"
+        placeholder="Introduce el enlace"
         required
       />
     </div>
@@ -59,6 +77,7 @@
       <input
         type="text"
         id="typeOfEntrance"
+        [(ngModel)]="propertyData.typeOfEntrance"
         name="typeOfEntrance"
         class="form-control"
         placeholder="Introduce el tipo de entrada"
@@ -72,20 +91,12 @@
       <input
         type="text"
         id="address"
+        [(ngModel)]="propertyData.address"
         name="address"
         class="form-control"
         placeholder="Introduce la dirección"
         required
       />
-    </div>
-
-    <!-- Disponibilidad -->
-    <div class="form-group">
-      <label for="isAvailable">Disponibilidad:</label>
-      <select id="isAvailable" name="isAvailable" class="form-control">
-        <option value="true">Disponible</option>
-        <option value="false">No Disponible</option>
-      </select>
     </div>
 
     <!-- Precio por noche -->
@@ -94,6 +105,7 @@
       <input
         type="number"
         id="pricePerNight"
+        [(ngModel)]="propertyData.pricePerNight"
         name="pricePerNight"
         class="form-control"
         placeholder="Introduce el precio por noche"
@@ -101,70 +113,96 @@
       />
     </div>
 
-    <!-- Número de habitaciones -->
+    <!-- Cantidad de habitaciones -->
     <div class="form-group">
-      <label for="amountOfRooms">Número de Habitaciones:</label>
+      <label for="amountOfRooms">Cantidad de Habitaciones:</label>
       <input
         type="number"
         id="amountOfRooms"
+        [(ngModel)]="propertyData.amountOfRooms"
         name="amountOfRooms"
         class="form-control"
-        placeholder="Introduce el número de habitaciones"
+        placeholder="Introduce la cantidad de habitaciones"
         required
       />
     </div>
 
-    <!-- Número de baños -->
+    <!-- Cantidad de baños -->
     <div class="form-group">
-      <label for="amountOfBathrooms">Número de Baños:</label>
+      <label for="amountOfBathrooms">Cantidad de Baños:</label>
       <input
         type="number"
         id="amountOfBathrooms"
+        [(ngModel)]="propertyData.amountOfBathrooms"
         name="amountOfBathrooms"
         class="form-control"
-        placeholder="Introduce el número de baños"
+        placeholder="Introduce la cantidad de baños"
         required
       />
     </div>
 
-    <!-- Capacidad -->
+    <!-- Cantidad de residentes -->
     <div class="form-group">
-      <label for="amountOfResidents">Capacidad (Número de residentes):</label>
+      <label for="amountOfResidents">Cantidad de Residentes:</label>
       <input
         type="number"
         id="amountOfResidents"
+        [(ngModel)]="propertyData.amountOfResidents"
         name="amountOfResidents"
         class="form-control"
-        placeholder="Introduce la capacidad de personas"
+        placeholder="Introduce la cantidad de residentes"
         required
       />
     </div>
 
-    <!-- ¿Es apto para mascotas? -->
+    <!-- Acepta mascotas -->
     <div class="form-group">
-      <label for="isPetFriendly">¿Apto para mascotas?</label>
-      <select id="isPetFriendly" name="isPetFriendly" class="form-control">
-        <option value="true">Sí</option>
-        <option value="false">No</option>
-      </select>
+      <label for="isPetFriendly">Es Pet Friendly:</label>
+      <input
+        type="checkbox"
+        id="isPetFriendly"
+        [(ngModel)]="propertyData.isPetFriendly"
+        name="isPetFriendly"
+        class="form-control-checkbox"
+      />
     </div>
 
-    <!-- ¿Tiene piscina? -->
+    <!-- Tiene piscina -->
     <div class="form-group">
-      <label for="hasPool">¿Tiene Piscina?</label>
-      <select id="hasPool" name="hasPool" class="form-control">
-        <option value="true">Sí</option>
-        <option value="false">No</option>
-      </select>
+      <label for="hasPool">Tiene Piscina:</label>
+      <input
+        type="checkbox"
+        id="hasPool"
+        [(ngModel)]="propertyData.hasPool"
+        name="hasPool"
+        class="form-control-checkbox"
+      />
     </div>
 
-    <!-- ¿Tiene asador? -->
+    <!-- Tiene parrilla -->
     <div class="form-group">
-      <label for="hasGril">¿Tiene Asador?</label>
-      <select id="hasGril" name="hasGril" class="form-control">
-        <option value="true">Sí</option>
-        <option value="false">No</option>
-      </select>
+      <label for="hasGril">Tiene Parrilla:</label>
+      <input
+        type="checkbox"
+        id="hasGril"
+        [(ngModel)]="propertyData.hasGril"
+        name="hasGril"
+        class="form-control-checkbox"
+      />
+    </div>
+
+    <!-- Email del propietario -->
+    <div class="form-group">
+      <label for="ownerEmail">Email del Propietario:</label>
+      <input
+        type="email"
+        id="ownerEmail"
+        [(ngModel)]="propertyData.ownerEmail"
+        name="ownerEmail"
+        class="form-control"
+        placeholder="Introduce el correo del propietario"
+        required
+      />
     </div>
 
     <!-- Imágenes de la propiedad -->
@@ -173,9 +211,8 @@
       <input
         type="file"
         id="photo"
-        name="photo"
+        (change)="onFileSelected($event)"
         class="form-control"
-        multiple
       />
     </div>
 

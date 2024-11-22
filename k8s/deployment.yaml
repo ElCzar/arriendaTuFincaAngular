@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arrienda-frontend
+  namespace: arriendatufinca
+spec:
+  selector:
+    matchLabels:
+      app: arrienda-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: arrienda-frontend
+    spec:
+      automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: github-secret
+      containers:
+      - name: arrienda-frontend
+        image: elczar/arrienda_tu_finca_frontend:alpha2.0
+        ports:
+        - containerPort: 4200
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "1Gi"
+            ephemeral-storage: "1Gi"
+          limits:
+            cpu: "500m"
+            memory: "2Gi"
+            ephemeral-storage: "2Gi"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: arrienda-frontend
+  namespace: arriendatufinca
+spec:
+  selector:
+    app: arrienda-frontend
+  ports:
+  - protocol: TCP
+    port: 4200
+    targetPort: 4200

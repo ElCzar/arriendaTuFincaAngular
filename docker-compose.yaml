@@ -1,0 +1,30 @@
+services:
+    arrienda-api:
+        image: elczar/arrienda_tu_finca:3.0
+        ports:
+            - 8080:8080
+        depends_on:
+            arrienda-db:
+                condition: service_healthy
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:mysql://arrienda-db:3306/arrienda_tu_finca
+            - SPRING_DATASOURCE_USERNAME=root
+            - SPRING_DATASOURCE_PASSWORD=rootpassword
+    arrienda-db:
+        image: mysql:8
+        environment:
+            - MYSQL_ROOT_PASSWORD=rootpassword
+            - MYSQL_DATABASE=arrienda_tu_finca
+        volumes:
+            - mysql_data:/var/lib/mysql
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - -h
+                - localhost
+            timeout: 20s
+            retries: 10
+volumes:
+    mysql_data:

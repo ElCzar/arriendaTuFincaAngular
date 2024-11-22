@@ -1,0 +1,21 @@
+<div class="pago-container">
+    <h1>Pagar arriendo</h1>
+    <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="valor">Valor</label>
+        <input id="valor" formControlName="valor" [attr.disabled]="true" />
+      </div>
+      <div>
+        <label for="banco">Banco</label>
+        <select id="banco" formControlName="banco">
+          <option *ngFor="let banco of bancos" [value]="banco">{{ banco }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="numeroCuenta">Número de Cuenta</label>
+        <input id="numeroCuenta" formControlName="numeroCuenta" />
+      </div>
+      <button type="submit" [disabled]="!pagoForm.valid">Pagar</button>
+    </form>
+  </div>
+

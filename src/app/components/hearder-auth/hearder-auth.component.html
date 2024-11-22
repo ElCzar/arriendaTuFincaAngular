@@ -1,0 +1,28 @@
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/PaoLogo.svg" alt="Arrienda Tu Finca">
+    </div>
+
+    <ul class="nav-links">
+      <li (click)="goToHome2()">Inicio</li>
+    </ul>
+
+    <div class="auth-buttons">
+      <img *ngIf="profileImageUrl" [src]="profileImageUrl" alt="Profile" class="profile-pic" (click)="toggleMenu()">
+      <div class="dropdown-menu" *ngIf="menuVisible">
+        <div class="profile-info">
+          <img *ngIf="profileImageUrl" [src]="profileImageUrl" alt="Profile" class="profile-pic-large">
+          <p>{{ userName }}</p>
+        </div>
+        <button (click)="viewUser()">Ver Usuario</button>
+        <button (click)="editUser()">Editar Usuario</button>
+        <button (click)="createProperty()">Crear Propiedad</button>
+        <button (click)="goToMyProperties()">Ver Propiedades</button>
+        <button (click)="goToMyRequests()">Ver Solicitudes</button>
+        <button (click)="changePassword()">Cambiar Contraseña</button>
+        <button (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </nav>
+</header>

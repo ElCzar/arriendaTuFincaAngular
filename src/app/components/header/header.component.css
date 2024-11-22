@@ -1,0 +1,78 @@
+header{
+    background-color: #eeeee7;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0px;
+}
+
+.logo img{
+    width: 100px;
+    height: 100px;
+}
+
+.nav-links{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li{
+    display: inline;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: #000;
+    font-size: 1.5em;
+    font-family: serif;
+}
+
+.auth-buttons{
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons button{
+    padding: 12px 26px;
+    border: none;
+    border-radius: 25px;
+    font-family: serif;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin: 8px;
+    
+}
+
+.sign-in{
+    background-color: #c3c8a8;
+    border: 2px solid #c3c8a8;
+    color: #000;
+}
+
+.log-in{
+    background-color: #c3c8a8;
+    color: #000;
+}
+
+@media(max-width: 768px){
+    .navbar{
+        flex-direction: column;
+    }
+
+    .nav-links{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .auth-buttons{
+        gap: 10px;
+    }
+}

@@ -1,0 +1,42 @@
+<div class="user-form-container">
+  <h1>Editar Perfil de Usuario</h1>
+  <form (ngSubmit)="updateUserProfile()">
+    <div class="form-group">
+      <label for="email">Correo Electrónico:</label>
+      <input type="email" id="email" [(ngModel)]="userProfile.email" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" [(ngModel)]="userProfile.name" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="surname">Apellido:</label>
+      <input type="text" id="surname" [(ngModel)]="userProfile.surname" name="surname" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Teléfono:</label>
+      <input type="text" id="phone" [(ngModel)]="userProfile.phone" name="phone" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="isHost">
+        <input type="checkbox" id="isHost" [(ngModel)]="userProfile.isHost" name="isHost" class="form-control-checkbox">
+        Es Anfitrión
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="isRenter">
+        <input type="checkbox" id="isRenter" [(ngModel)]="userProfile.isRenter" name="isRenter" class="form-control-checkbox">
+        Es Arrendatario
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="imageId">ID de Imagen:</label>
+      <input type="number" id="imageId" [(ngModel)]="userProfile.imageId" name="imageId" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="profilePicture">Foto de perfil:</label>
+      <input type="file" id="profilePicture" (change)="onFileSelected($event)" class="form-control">
+    </div>
+    <button type="submit" class="btn-primary">Actualizar Perfil</button>
+  </form>
+</div>
